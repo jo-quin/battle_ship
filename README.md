@@ -4,6 +4,7 @@ I want to build a Battle Ship game on the terminal.
 
 ## User stories
 
+```shell
 As a player
 So I can position my ships
 I want to see how many ships I have and how many squares on the grid each occupy.
@@ -31,3 +32,4 @@ I want to receive a message 'hit or miss' and see on the grid2 my shot in red fo
 As a player
 So I can keep track of my opponent shots
 I want grid1 to show my opponents shots.
+```
