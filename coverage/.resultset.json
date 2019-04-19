@@ -1,0 +1,19 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/student/Scripts/battle_ship/spec/game_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/student/Scripts/battle_ship/lib/game.rb": [
+        null,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1555711022
+  }
+}
