@@ -13,4 +13,9 @@ class Game
     end
     puts string
   end
+
+  def position_ships
+    puts 'To position your ship enter starting coordinates (A to J and 1 to 10) and vertical or horizontal.
+EXAMPLE: B5 vertical'
+  end
 end
