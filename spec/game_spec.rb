@@ -18,14 +18,23 @@ Destroyer Qty: 5 Length: 2
 
   describe '#position_ships' do
     it 'pretty-print instructions for ships positioning' do
-      instructions = 'To position your ship enter starting coordinates (A to J and 1 to 10) and vertical or horizontal.
+      instructions = 'To position your ships on the grid enter starting coordinates (A to J and 1 to 10) and vertical or horizontal.
 EXAMPLE: B5 vertical'
       expect(STDOUT).to receive(:puts).with instructions
       game.position_ships
     end
 
-    it 'creates a dictionary with ships names and their position on the grid'
-
     it 'pretty-print ships positioned and ships left to be positioned'
+
+    it 'returns a hash with ships names and their coordinates'
+  end
+
+  describe '#ships_coordinates' do
+    it 'creates a dictionary with ships names and their position on the grid' do
+      game.ships_coordinates(:carrier, 'B3 vertical')
+      game.ships_coordinates(:battleship, 'A1 horizontal')
+      expect(game.coordinates).to eq ({ carrier: ['B3', 'B4', 'B5', 'B6', 'B7'], 
+      battleship: ['A1', 'B1', 'C1', 'D1'] })
+    end
   end
 end
