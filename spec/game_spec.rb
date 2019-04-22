@@ -4,7 +4,7 @@ describe Game do
   subject(:game) { Game.new }
 
   describe '#ships' do
-    it 'pretty-print the ships, qty and their length' do
+    it 'pretty-print the ships and their length' do
       ships = 'Carrier Length: 5
 Battleship Length: 4
 Cruiser Length: 3
@@ -25,29 +25,30 @@ EXAMPLE: B5 vertical'
     end
   end
 
-  describe '#input_coordinates' do
-    it 'calls ships_coordinates with the ship and coordinates' do
-      allow(game).to receive(:gets).and_return('B5 vertical')
-      expect(game).to receive(:ships_coordinates).with(:carrier, 'B5 vertical')
-      game.input_coordinates(:carrier)
-    end
-  end
-
   describe '#position_ships' do
     it 'pretty-print ships positioned and ships left to be positioned'
+
+    it 'prints a new grid with every new ship added'
 
     it 'calls ships_coordinates' do
       expect(game).to receive(:input_coordinates).exactly(Game::SHIPS.length).times
       game.position_ships
     end
-  end
 
-  describe '#ships_coordinates' do
-    it 'creates a dictionary with ships names and their position on the grid' do
-      game.ships_coordinates(:carrier, 'B3 vertical')
-      game.ships_coordinates(:battleship, 'A1 horizontal')
-      expect(game.coordinates).to eq({ carrier: ['B3', 'B4', 'B5', 'B6', 'B7'],
-      battleship: ['A1', 'B1', 'C1', 'D1'] })
+    context 'horizontal coordinates' do
+      it 'adds ships and coordinates to coordinates instance variable' do
+        allow(game).to receive(:gets).and_return('B5 horizontal')
+        expect{ game.position_ships }.to change{ game.coordinates }
+        puts game.coordinates
+      end
     end
+    context 'vertical coordinates' do
+      it 'adds ships and coordinates to coordinates instance variable' do
+        allow(game).to receive(:gets).and_return('C3 vertical')
+        expect{ game.position_ships }.to change{ game.coordinates }
+        puts game.coordinates
+      end
+    end
+
   end
 end

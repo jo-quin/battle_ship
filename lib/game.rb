@@ -12,6 +12,7 @@ class Game
   def initialize
     @coordinates = Hash.new
   end
+  
   def ships
     string = ''
     SHIPS.each do |ship, length|
@@ -31,6 +32,8 @@ EXAMPLE: B5 vertical'
     end
   end
 
+  private
+  
   def input_coordinates(ship)
     puts "#{ship.capitalize}: "
     coordinates = gets.chomp
