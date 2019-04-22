@@ -20,9 +20,20 @@ class Game
     puts string
   end
 
-  def position_ships
+  def position_ships_instructions
     puts 'To position your ships on the grid enter starting coordinates (A to J and 1 to 10) and vertical or horizontal.
 EXAMPLE: B5 vertical'
+  end
+
+  def position_ships
+    SHIPS.each do |ship, value|
+    end
+  end
+
+  def input_coordinates(ship)
+    puts "#{ship.capitalize}: "
+    coordinates = gets.chomp
+    ships_coordinates(ship, coordinates)
   end
 
   def ships_coordinates(ship, coordinates)
