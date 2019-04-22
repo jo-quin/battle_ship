@@ -5,11 +5,11 @@ describe Game do
 
   describe '#ships' do
     it 'pretty-print the ships, qty and their length' do
-      ships = 'Carrier Qty: 1 Length: 5
-Battleship Qty: 2 Length: 4
-Cruiser Qty: 3 Length: 3
-Submarine Qty: 4 Length: 3
-Destroyer Qty: 5 Length: 2
+      ships = 'Carrier Length: 5
+Battleship Length: 4
+Cruiser Length: 3
+Submarine Length: 3
+Destroyer Length: 2
 '
       expect(STDOUT).to receive(:puts).with ships
       game.ships
@@ -37,7 +37,7 @@ EXAMPLE: B5 vertical'
     it 'pretty-print ships positioned and ships left to be positioned'
 
     it 'calls ships_coordinates' do
-      expect(game).to receive(:input_coordinates).once
+      expect(game).to receive(:input_coordinates).exactly(Game::SHIPS.length).times
       game.position_ships
     end
   end

@@ -2,11 +2,11 @@ class Game
 
   attr_reader :coordinates
   SHIPS = {
-    carrier: [1, 5],
-    battleship: [2, 4],
-    cruiser: [3, 3],
-    submarine: [4, 3],
-    destroyer: [5, 2]
+    carrier: 5,
+    battleship: 4,
+    cruiser: 3,
+    submarine: 3,
+    destroyer: 2
   }
 
   def initialize
@@ -14,8 +14,8 @@ class Game
   end
   def ships
     string = ''
-    SHIPS.each do |ship, details|
-      string += "#{ship.capitalize} Qty: #{details.first} Length: #{details.last}\n"
+    SHIPS.each do |ship, length|
+      string += "#{ship.capitalize} Length: #{length}\n"
     end
     puts string
   end
@@ -26,7 +26,8 @@ EXAMPLE: B5 vertical'
   end
 
   def position_ships
-    SHIPS.each do |ship, value|
+    SHIPS.each do |ship, _value|
+      input_coordinates(ship)
     end
   end
 
@@ -37,7 +38,7 @@ EXAMPLE: B5 vertical'
   end
 
   def ships_coordinates(ship, coordinates)
-    length = SHIPS[ship][1]
+    length = SHIPS[ship]
     coordinates = coordinates.split(' ')
     direction = coordinates.last
     start = coordinates.first.split('')
@@ -46,11 +47,11 @@ EXAMPLE: B5 vertical'
     coordinates_array = Array.new
     if direction == 'vertical'
       length.times do |n|
-        coordinates_array << "#{ start_horizontal }#{ start_vertical + n}"
+        coordinates_array << "#{start_horizontal }#{start_vertical + n}"
       end
     else
       length.times do |n|
-        coordinates_array << "#{ (start_horizontal.ord + n).chr}#{start_vertical}"
+        coordinates_array << "#{(start_horizontal.ord + n).chr}#{start_vertical}"
       end
     end
     @coordinates[ship] = coordinates_array
