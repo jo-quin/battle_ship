@@ -33,17 +33,9 @@
         1,
         null,
         1,
-        null,
-        1,
         1,
         1,
         null,
-        null,
-        1,
-        1,
-        1,
-        4,
-        1,
         null,
         null,
         1,
@@ -52,6 +44,12 @@
         4,
         1,
         null,
+        null,
+        1,
+        1,
+        1,
+        4,
+        1,
         null,
         null,
         null,
@@ -59,7 +57,6 @@
       ],
       "/Users/student/Scripts/battle_ship/lib/game.rb": [
         1,
-        null,
         1,
         null,
         1,
@@ -107,6 +104,11 @@
         10,
         10,
         10,
+        null,
+        null,
+        1,
+        10,
+        10,
         10,
         10,
         5,
@@ -122,6 +124,6 @@
         null
       ]
     },
-    "timestamp": 1555969588
+    "timestamp": 1556003138
   }
 }

@@ -26,8 +26,6 @@ EXAMPLE: B5 vertical'
   end
 
   describe '#position_ships' do
-    it 'pretty-print ships positioned and ships left to be positioned'
-
     it 'prints a new grid with every new ship added'
 
     it 'calls ships_coordinates' do
@@ -35,6 +33,7 @@ EXAMPLE: B5 vertical'
       game.position_ships
     end
 
+    # improve these tests to eq the correct output
     context 'horizontal coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
         allow(game).to receive(:gets).and_return('B5 horizontal')
@@ -49,6 +48,5 @@ EXAMPLE: B5 vertical'
         puts game.coordinates
       end
     end
-
   end
 end

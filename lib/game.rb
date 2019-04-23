@@ -1,5 +1,4 @@
 class Game
-
   attr_reader :coordinates
   SHIPS = {
     carrier: 5,
@@ -10,9 +9,9 @@ class Game
   }
 
   def initialize
-    @coordinates = Hash.new
+    @coordinates = {}
   end
-  
+
   def ships
     string = ''
     SHIPS.each do |ship, length|
@@ -33,24 +32,29 @@ EXAMPLE: B5 vertical'
   end
 
   private
-  
+
   def input_coordinates(ship)
     puts "#{ship.capitalize}: "
     coordinates = gets.chomp
-    ships_coordinates(ship, coordinates)
+    save_ships_coordinates(ship, coordinates)
   end
 
-  def ships_coordinates(ship, coordinates)
-    length = SHIPS[ship]
+  def split_coordinates(coordinates)
     coordinates = coordinates.split(' ')
     direction = coordinates.last
     start = coordinates.first.split('')
     start_horizontal = start.first
     start_vertical = start.last.to_i
-    coordinates_array = Array.new
+    return direction, start_horizontal, start_vertical
+  end
+
+  def save_ships_coordinates(ship, coordinates)
+    length = SHIPS[ship]
+    direction, start_horizontal, start_vertical = split_coordinates(coordinates)
+    coordinates_array = []
     if direction == 'vertical'
       length.times do |n|
-        coordinates_array << "#{start_horizontal }#{start_vertical + n}"
+        coordinates_array << "#{start_horizontal}#{start_vertical + n}"
       end
     else
       length.times do |n|

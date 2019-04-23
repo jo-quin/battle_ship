@@ -105,7 +105,7 @@ SimpleCov.start
 RSpec.configure do |config|
   config.after(:suite) do
     puts
-    puts "[33mAre you running rubocop? Just run: rubocop[0m"
-    puts "[33mAlso remember to commit when passing a new test![0m"
+    puts "[31mAre you running rubocop? Just run: rubocop[0m"
+    puts "[31mAlso remember to commit when passing a new test![0m"
   end
 end
