@@ -26,7 +26,11 @@ EXAMPLE: B5 vertical'
   end
 
   describe '#position_ships' do
-    it 'prints a new grid with every new ship added'
+    xit 'prints a new grid with every new ship added' do
+      # double grid and pass it to the initialize
+      # will have to change subject game to eq Game.new(grid)
+      # expect grid to be called game::ships.length times
+    end
 
     it 'calls ships_coordinates' do
       expect(game).to receive(:input_coordinates).exactly(Game::SHIPS.length).times

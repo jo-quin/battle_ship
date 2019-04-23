@@ -32,6 +32,10 @@
         1,
         1,
         null,
+        null,
+        null,
+        null,
+        null,
         1,
         1,
         1,
@@ -56,6 +60,8 @@
         null
       ],
       "/Users/student/Scripts/battle_ship/lib/game.rb": [
+        1,
+        null,
         1,
         1,
         null,
@@ -89,6 +95,7 @@
         null,
         null,
         null,
+        null,
         1,
         null,
         1,
@@ -122,8 +129,21 @@
         10,
         null,
         null
+      ],
+      "/Users/student/Scripts/battle_ship/lib/grid.rb": [
+        1,
+        null
+      ],
+      "/Users/student/Scripts/battle_ship/spec/grid_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null
       ]
     },
-    "timestamp": 1556003138
+    "timestamp": 1556004207
   }
 }

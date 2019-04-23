@@ -1,3 +1,5 @@
+require 'grid'
+
 class Game
   attr_reader :coordinates
   SHIPS = {
@@ -28,6 +30,7 @@ EXAMPLE: B5 vertical'
   def position_ships
     SHIPS.each do |ship, _value|
       input_coordinates(ship)
+      # print grid
     end
   end
 
