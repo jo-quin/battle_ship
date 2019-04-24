@@ -4,7 +4,7 @@ I want to build a Battle Ship game on the terminal.
 
 ## User stories
 
-```shell
+```
 As a player
 So I can position my ships
 I want to see how many ships I have and how many squares on the grid each occupy.
