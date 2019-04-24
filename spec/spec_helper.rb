@@ -109,3 +109,7 @@ RSpec.configure do |config|
     puts "[31mAlso remember to commit when passing a new test![0m"
   end
 end
+
+RSpec.configure do |c|
+  c.before { allow($stdout).to receive(:puts) }
+end

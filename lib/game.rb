@@ -1,4 +1,4 @@
-require 'grid'
+require_relative 'grid'
 
 class Game
   attr_reader :coordinates
@@ -29,16 +29,16 @@ EXAMPLE: B5 vertical'
   end
 
   def position_ships
-    SHIPS.each do |ship, _value|
-      input_coordinates(ship)
-      @grid.print_grid(@coordinates)
+    SHIPS.each do |ship, length|
+      puts @grid.print_grid(@coordinates)
+      input_coordinates(ship, length)
     end
   end
 
   private
 
-  def input_coordinates(ship)
-    puts "#{ship.capitalize}: "
+  def input_coordinates(ship, length)
+    puts "#{ship.capitalize} (#{length}): "
     coordinates = gets.chomp
     save_ships_coordinates(ship, coordinates)
   end

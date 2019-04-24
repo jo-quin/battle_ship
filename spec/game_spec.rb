@@ -28,6 +28,7 @@ EXAMPLE: B5 vertical'
 
   describe '#position_ships' do
     it 'calls ships_coordinates' do
+      allow(game).to receive(:system).and_return('HOLA')
       allow(grid).to receive(:print_grid)
       expect(game).to receive(:input_coordinates).exactly(Game::SHIPS.length).times
       game.position_ships
