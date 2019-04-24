@@ -1,7 +1,8 @@
 require 'game'
 
 describe Game do
-  subject(:game) { Game.new }
+  let(:grid) { double :grid }
+  subject(:game) { Game.new(grid) }
 
   describe '#ships' do
     it 'pretty-print the ships and their length' do
@@ -26,26 +27,28 @@ EXAMPLE: B5 vertical'
   end
 
   describe '#position_ships' do
-    xit 'prints a new grid with every new ship added' do
-      # double grid and pass it to the initialize
-      # will have to change subject game to eq Game.new(grid)
-      # expect grid to be called game::ships.length times
-    end
-
     it 'calls ships_coordinates' do
+      allow(grid).to receive(:print_grid)
       expect(game).to receive(:input_coordinates).exactly(Game::SHIPS.length).times
       game.position_ships
     end
 
+    it 'prints a new grid with every new ship added' do      
+      expect(grid).to receive(:print_grid).exactly(Game::SHIPS.length).times
+      allow(game).to receive(:gets).and_return('B5 horizontal')
+      game.position_ships
+    end
     # improve these tests to eq the correct output
     context 'horizontal coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
+        allow(grid).to receive(:print_grid)
         allow(game).to receive(:gets).and_return('B5 horizontal')
         expect{ game.position_ships }.to change{ game.coordinates }
       end
     end
     context 'vertical coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
+        allow(grid).to receive(:print_grid)
         allow(game).to receive(:gets).and_return('C3 vertical')
         expect{ game.position_ships }.to change{ game.coordinates }
       end

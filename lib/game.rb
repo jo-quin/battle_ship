@@ -10,8 +10,9 @@ class Game
     destroyer: 2
   }
 
-  def initialize
+  def initialize(grid = Grid.new)
     @coordinates = {}
+    @grid = grid
   end
 
   def ships
@@ -30,7 +31,7 @@ EXAMPLE: B5 vertical'
   def position_ships
     SHIPS.each do |ship, _value|
       input_coordinates(ship)
-      # puts grid.print_grid(@coordinates)
+      @grid.print_grid(@coordinates)
     end
   end
 
