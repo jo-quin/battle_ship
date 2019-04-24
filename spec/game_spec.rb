@@ -42,14 +42,12 @@ EXAMPLE: B5 vertical'
       it 'adds ships and coordinates to coordinates instance variable' do
         allow(game).to receive(:gets).and_return('B5 horizontal')
         expect{ game.position_ships }.to change{ game.coordinates }
-        puts game.coordinates
       end
     end
     context 'vertical coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
         allow(game).to receive(:gets).and_return('C3 vertical')
         expect{ game.position_ships }.to change{ game.coordinates }
-        puts game.coordinates
       end
     end
   end

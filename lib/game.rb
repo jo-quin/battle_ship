@@ -30,7 +30,7 @@ EXAMPLE: B5 vertical'
   def position_ships
     SHIPS.each do |ship, _value|
       input_coordinates(ship)
-      # print grid
+      # puts grid.print_grid(@coordinates)
     end
   end
 
