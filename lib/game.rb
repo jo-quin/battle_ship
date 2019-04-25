@@ -32,6 +32,7 @@ EXAMPLE: B5 vertical'
     SHIPS.each do |ship, length|
       puts @grid.print_grid(@coordinates)
       input_coordinates(ship, length)
+      # from here go to play screen
     end
   end
 
