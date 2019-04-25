@@ -36,6 +36,12 @@ EXAMPLE: B5 vertical'
     end
   end
 
+  def play_screen
+    puts @grid.print_grid()
+    puts 
+    puts @grid.print_grid(@coordinates)
+  end
+
   private
 
   def input_coordinates(ship, length)

@@ -28,7 +28,6 @@ EXAMPLE: B5 vertical'
 
   describe '#position_ships' do
     it 'calls ships_coordinates' do
-      allow(game).to receive(:system).and_return('HOLA')
       allow(grid).to receive(:print_grid)
       expect(game).to receive(:input_coordinates).exactly(Game::SHIPS.length).times
       game.position_ships
@@ -53,6 +52,13 @@ EXAMPLE: B5 vertical'
         allow(game).to receive(:gets).and_return('C3 vertical')
         expect{ game.position_ships }.to change{ game.coordinates }
       end
+    end
+  end
+
+  describe '#play_screen' do
+    it 'prints both grids' do
+      expect(grid).to receive(:print_grid).twice
+      game.play_screen
     end
   end
 end
