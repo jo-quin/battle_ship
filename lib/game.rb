@@ -32,7 +32,6 @@ EXAMPLE: B5 vertical'
     SHIPS.each do |ship, length|
       puts @grid.print_grid(@coordinates)
       input_coordinates(ship, length)
-      # from here go to play screen
     end
   end
 
@@ -40,6 +39,11 @@ EXAMPLE: B5 vertical'
     puts @grid.print_grid()
     puts 
     puts @grid.print_grid(@coordinates)
+  end
+
+  def fire_shot
+    puts 'Enter shot coordinate:'
+    gets.chomp
   end
 
   private
