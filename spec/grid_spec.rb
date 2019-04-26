@@ -41,8 +41,5 @@ describe Grid do
     it 'prints grid with shoots' do
       expect(subject.print_grid(coordinates_shot, 'X')).to eq printed_grid_shot
     end
-
   end
-
-  it 'prints opponent grid and player grid'
 end

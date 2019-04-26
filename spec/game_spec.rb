@@ -68,9 +68,7 @@ EXAMPLE: B5 vertical'
       allow(game).to receive(:gets).and_return 'E5'
       game.fire_shot
     end
-
-    it 'prints the grid with the shot coordinate marked with an X' # should expect to call print grid
-
+    
     it 'prints hit or miss'
   end
 end

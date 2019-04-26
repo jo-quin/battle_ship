@@ -1,7 +1,6 @@
 class Grid
   def print_grid(coordinates = [], sign = 0)
-    coordinates.empty? ? coordinates_array = []
-: coordinates_array = coordinates.values.flatten
+    coordinates.empty? ? coordinates_array = [] : coordinates_array = coordinates.values.flatten
     grid = "  |"
     ('A'..'J').each { |l| grid += " #{l} |" }
     grid += "\n"

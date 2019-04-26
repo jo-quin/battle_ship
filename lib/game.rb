@@ -45,7 +45,7 @@ EXAMPLE: B5 vertical'
   def fire_shot
     puts 'Enter shot coordinate:'
     @shots_coordinates[:shots] << gets.chomp
-    # shots_coordinates[:shots].unique!
+    @shots_coordinates[:shots].uniq!
   end
 
   private
