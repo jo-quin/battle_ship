@@ -10,9 +10,9 @@ class Game
     destroyer: 2
   }
 
-  def initialize(grid = Grid.new)
-    @ships_coordinates = {}
-    @shots_coordinates = { shots: []}
+  def initialize(grid = Grid.new, player1, player2)
+    @player1 = player1
+    @player2 = player2
     @grid = grid
   end
 
@@ -29,31 +29,31 @@ class Game
 EXAMPLE: B5 vertical'
   end
 
-  def position_ships
+  def position_ships(player)
     SHIPS.each do |ship, length|
-      puts @grid.print_grid(@ships_coordinates)
-      input_coordinates(ship, length)
+      puts @grid.print_grid(player.ships_coordinates)
+      input_coordinates(ship, length, player)
     end
   end
 
-  def play_screen
-    puts @grid.print_grid(@shots_coordinates, 'X')
+  def play_screen(player)
+    puts @grid.print_grid(player.shots_coordinates, 'X')
     puts 
-    puts @grid.print_grid(@ships_coordinates)
+    puts @grid.print_grid(player.ships_coordinates)
   end
 
-  def fire_shot
+  def fire_shot(player)
     puts 'Enter shot coordinate:'
-    @shots_coordinates[:shots] << gets.chomp
-    @shots_coordinates[:shots].uniq!
+    player.shots_coordinates[:shots] << gets.chomp
+    player.shots_coordinates[:shots].uniq!
   end
 
   private
 
-  def input_coordinates(ship, length)
+  def input_coordinates(ship, length, player)
     puts "#{ship.capitalize} (#{length}): "
     coordinates = gets.chomp
-    save_ships_coordinates(ship, coordinates)
+    save_ships_coordinates(ship, coordinates, player)
   end
 
   def split_coordinates(coordinates)
@@ -65,7 +65,7 @@ EXAMPLE: B5 vertical'
     return direction, start_horizontal, start_vertical
   end
 
-  def save_ships_coordinates(ship, coordinates)
+  def save_ships_coordinates(ship, coordinates, player)
     length = SHIPS[ship]
     direction, start_horizontal, start_vertical = split_coordinates(coordinates)
     coordinates_array = []
@@ -78,6 +78,6 @@ EXAMPLE: B5 vertical'
         coordinates_array << "#{(start_horizontal.ord + n).chr}#{start_vertical}"
       end
     end
-    @ships_coordinates[ship] = coordinates_array
+    player.ships_coordinates[ship] = coordinates_array
   end
 end

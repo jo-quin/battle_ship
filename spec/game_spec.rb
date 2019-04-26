@@ -2,7 +2,9 @@ require 'game'
 
 describe Game do
   let(:grid) { double :grid }
-  subject(:game) { Game.new(grid) }
+  let(:player1) { double(:player1, ships_coordinates: {}, shots_coordinates: { shots: []}) }
+  let(:player2) { double(:player2, ships_coordinates: {}, shots_coordinates: { shots: []}) }
+  subject(:game) { Game.new(grid, player1, player2) }
 
   describe '#ships' do
     it 'pretty-print the ships and their length' do
@@ -30,27 +32,29 @@ EXAMPLE: B5 vertical'
     it 'calls ships_coordinates' do
       allow(grid).to receive(:print_grid)
       expect(game).to receive(:input_coordinates).exactly(Game::SHIPS.length).times
-      game.position_ships
+      game.position_ships(player1)
     end
 
     it 'prints a new grid with every new ship added' do      
       expect(grid).to receive(:print_grid).exactly(Game::SHIPS.length).times
       allow(game).to receive(:gets).and_return('B5 horizontal')
-      game.position_ships
+      game.position_ships(player1)
     end
     # improve these tests to eq the correct output
     context 'horizontal coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
         allow(grid).to receive(:print_grid)
         allow(game).to receive(:gets).and_return('B5 horizontal')
-        expect{ game.position_ships }.to change{ game.ships_coordinates }
+        expect(player1).to receive(:ships_coordinates)
+        game.position_ships(player1)
       end
     end
     context 'vertical coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
         allow(grid).to receive(:print_grid)
         allow(game).to receive(:gets).and_return('C3 vertical')
-        expect{ game.position_ships }.to change{ game.ships_coordinates }
+        expect(player1).to receive(:ships_coordinates)
+        game.position_ships(player1)
       end
     end
   end
@@ -58,7 +62,7 @@ EXAMPLE: B5 vertical'
   describe '#play_screen' do
     it 'prints both grids' do
       expect(grid).to receive(:print_grid).twice
-      game.play_screen
+      game.play_screen(player1)
     end
   end
 
@@ -66,7 +70,7 @@ EXAMPLE: B5 vertical'
     it 'ask for shot coordinate' do
       expect(STDOUT).to receive(:puts).with 'Enter shot coordinate:'
       allow(game).to receive(:gets).and_return 'E5'
-      game.fire_shot
+      game.fire_shot(player1)
     end
     
     it 'prints hit or miss'
