@@ -1,7 +1,7 @@
 require_relative 'grid'
 
 class Game
-  attr_reader :coordinates
+  attr_reader :ships_coordinates
   SHIPS = {
     carrier: 5,
     battleship: 4,
@@ -11,7 +11,8 @@ class Game
   }
 
   def initialize(grid = Grid.new)
-    @coordinates = {}
+    @ships_coordinates = {}
+    @shots_coordinates = { shots: []}
     @grid = grid
   end
 
@@ -30,20 +31,21 @@ EXAMPLE: B5 vertical'
 
   def position_ships
     SHIPS.each do |ship, length|
-      puts @grid.print_grid(@coordinates)
+      puts @grid.print_grid(@ships_coordinates)
       input_coordinates(ship, length)
     end
   end
 
   def play_screen
-    puts @grid.print_grid()
+    puts @grid.print_grid(@shots_coordinates, 'X')
     puts 
-    puts @grid.print_grid(@coordinates)
+    puts @grid.print_grid(@ships_coordinates)
   end
 
   def fire_shot
     puts 'Enter shot coordinate:'
-    gets.chomp
+    @shots_coordinates[:shots] << gets.chomp
+    # shots_coordinates[:shots].unique!
   end
 
   private
@@ -76,6 +78,6 @@ EXAMPLE: B5 vertical'
         coordinates_array << "#{(start_horizontal.ord + n).chr}#{start_vertical}"
       end
     end
-    @coordinates[ship] = coordinates_array
+    @ships_coordinates[ship] = coordinates_array
   end
 end
