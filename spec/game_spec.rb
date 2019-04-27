@@ -4,7 +4,7 @@ describe Game do
   let(:grid) { double :grid }
   let(:player1) { double(:player1, ships_coordinates: {}, shots_coordinates: { shots: []}) }
   let(:player2) { double(:player2, ships_coordinates: {}, shots_coordinates: { shots: []}) }
-  subject(:game) { Game.new(grid, player1, player2) }
+  subject(:game) { Game.new(grid) }
 
   describe '#ships' do
     it 'pretty-print the ships and their length' do
@@ -37,14 +37,14 @@ EXAMPLE: B5 vertical'
 
     it 'prints a new grid with every new ship added' do      
       expect(grid).to receive(:print_grid).exactly(Game::SHIPS.length).times
-      allow(game).to receive(:gets).and_return('B5 horizontal')
+      allow(game).to receive(:gets).and_return('B10 horizontal')
       game.position_ships(player1)
     end
     # improve these tests to eq the correct output
     context 'horizontal coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
         allow(grid).to receive(:print_grid)
-        allow(game).to receive(:gets).and_return('B5 horizontal')
+        allow(game).to receive(:gets).and_return('B10 horizontal')
         expect(player1).to receive(:ships_coordinates)
         game.position_ships(player1)
       end
@@ -52,7 +52,7 @@ EXAMPLE: B5 vertical'
     context 'vertical coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
         allow(grid).to receive(:print_grid)
-        allow(game).to receive(:gets).and_return('C3 vertical')
+        allow(game).to receive(:gets).and_return('C1 vertical')
         expect(player1).to receive(:ships_coordinates)
         game.position_ships(player1)
       end
@@ -74,5 +74,6 @@ EXAMPLE: B5 vertical'
     end
     
     it 'prints hit or miss'
+    # check if player1 shot in player2 ships coordinates
   end
 end

@@ -1,4 +1,5 @@
 require_relative 'grid'
+require_relative 'player'
 
 class Game
   attr_reader :ships_coordinates
@@ -10,9 +11,7 @@ class Game
     destroyer: 2
   }
 
-  def initialize(grid = Grid.new, player1, player2)
-    @player1 = player1
-    @player2 = player2
+  def initialize(grid = Grid.new)
     @grid = grid
   end
 
@@ -61,7 +60,7 @@ EXAMPLE: B5 vertical'
     direction = coordinates.last
     start = coordinates.first.split('')
     start_horizontal = start.first
-    start_vertical = start.last.to_i
+    start_vertical = start[1..-1].join.to_i
     return direction, start_horizontal, start_vertical
   end
 
@@ -69,15 +68,27 @@ EXAMPLE: B5 vertical'
     length = SHIPS[ship]
     direction, start_horizontal, start_vertical = split_coordinates(coordinates)
     coordinates_array = []
-    if direction == 'vertical'
+    if direction.downcase == 'vertical'
       length.times do |n|
         coordinates_array << "#{start_horizontal}#{start_vertical + n}"
       end
-    else
+    elsif direction.downcase == 'horizontal'
       length.times do |n|
         coordinates_array << "#{(start_horizontal.ord + n).chr}#{start_vertical}"
       end
     end
     player.ships_coordinates[ship] = coordinates_array
   end
+end
+
+if __FILE__ == $0
+  player1 = Player.new('Player1')
+  player2 = Player.new('Player2')
+  g = Game.new(Grid.new)
+  g.position_ships_instructions
+  g.position_ships(player1)
+  g.play_screen(player1)
+  g.position_ships_instructions
+  g.position_ships(player2)
+  g.play_screen(player2)
 end

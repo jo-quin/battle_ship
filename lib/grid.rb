@@ -1,4 +1,4 @@
-class Grid
+class Grid 
   def print_grid(coordinates = [], sign = 0)
     coordinates.empty? ? coordinates_array = [] : coordinates_array = coordinates.values.flatten
     grid = "  |"
