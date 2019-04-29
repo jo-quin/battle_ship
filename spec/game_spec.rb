@@ -70,10 +70,21 @@ EXAMPLE: B5 vertical'
     it 'ask for shot coordinate' do
       expect(STDOUT).to receive(:puts).with 'Enter shot coordinate:'
       allow(game).to receive(:gets).and_return 'E5'
-      game.fire_shot(player1)
+      game.fire_shot(player1, player2)
     end
     
-    it 'prints hit or miss'
-    # check if player1 shot in player2 ships coordinates
+    it "prints hit when shot hits opponent's ship" do
+      allow(player2).to receive(:ships_coordinates).and_return({ destroyer: ['B2', 'E2']})
+      allow(game).to receive(:gets).and_return 'B2'
+      expect(STDOUT).to receive(:puts).with 'HIT!'
+      game.fire_shot(player1, player2)
+    end
+
+    it "prints miss when shot miss opponent's ship" do
+      allow(player2).to receive(:ships_coordinates).and_return({ destroyer: ['B2', 'E2']})
+      allow(game).to receive(:gets).and_return 'A2'
+      expect(STDOUT).to receive(:puts).with 'MISS!'
+      game.fire_shot(player1, player2)
+    end
   end
 end

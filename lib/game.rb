@@ -41,10 +41,11 @@ EXAMPLE: B5 vertical'
     puts @grid.print_grid(player.ships_coordinates)
   end
 
-  def fire_shot(player)
+  def fire_shot(player, opponent)
     puts 'Enter shot coordinate:'
     player.shots_coordinates[:shots] << gets.chomp
     player.shots_coordinates[:shots].uniq!
+    puts opponent.ships_coordinates.values.flatten.include?(player.shots_coordinates[:shots].last) ? 'HIT!' : 'MISS!'
   end
 
   private
