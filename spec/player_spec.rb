@@ -13,7 +13,7 @@ describe Player do
     end
 
     it 'has empty shots_coordinates' do
-      expect(player.shots_coordinates).to eq({ shots: []})
+      expect(player.shots_coordinates).to eq({ hit: [], miss: []})
     end
   end
 end

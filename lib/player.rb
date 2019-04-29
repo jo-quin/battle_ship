@@ -4,6 +4,6 @@ class Player
   def initialize(name)
     @name = name
     @ships_coordinates = {}
-    @shots_coordinates = { shots: []}
+    @shots_coordinates = { hit: [], miss: []} # refactor to hit: [], miss: []
   end
 end

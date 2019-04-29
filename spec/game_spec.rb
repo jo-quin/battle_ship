@@ -2,8 +2,8 @@ require 'game'
 
 describe Game do
   let(:grid) { double :grid }
-  let(:player1) { double(:player1, ships_coordinates: {}, shots_coordinates: { shots: []}) }
-  let(:player2) { double(:player2, ships_coordinates: {}, shots_coordinates: { shots: []}) }
+  let(:player1) { double(:player1, ships_coordinates: {}, shots_coordinates: { hit: [], miss: []}) }
+  let(:player2) { double(:player2, ships_coordinates: {}, shots_coordinates: { hit: [], miss: []}) }
   subject(:game) { Game.new(grid) }
 
   describe '#ships' do
@@ -30,20 +30,20 @@ EXAMPLE: B5 vertical'
 
   describe '#position_ships' do
     it 'calls ships_coordinates' do
-      allow(grid).to receive(:print_grid)
+      allow(grid).to receive(:print_grid1)
       expect(game).to receive(:input_coordinates).exactly(Game::SHIPS.length).times
       game.position_ships(player1)
     end
 
     it 'prints a new grid with every new ship added' do      
-      expect(grid).to receive(:print_grid).exactly(Game::SHIPS.length).times
+      expect(grid).to receive(:print_grid1).exactly(Game::SHIPS.length).times
       allow(game).to receive(:gets).and_return('B10 horizontal')
       game.position_ships(player1)
     end
     # improve these tests to eq the correct output
     context 'horizontal coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
-        allow(grid).to receive(:print_grid)
+        allow(grid).to receive(:print_grid1)
         allow(game).to receive(:gets).and_return('B10 horizontal')
         expect(player1).to receive(:ships_coordinates)
         game.position_ships(player1)
@@ -51,7 +51,7 @@ EXAMPLE: B5 vertical'
     end
     context 'vertical coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
-        allow(grid).to receive(:print_grid)
+        allow(grid).to receive(:print_grid1)
         allow(game).to receive(:gets).and_return('C1 vertical')
         expect(player1).to receive(:ships_coordinates)
         game.position_ships(player1)
@@ -61,7 +61,8 @@ EXAMPLE: B5 vertical'
 
   describe '#play_screen' do
     it 'prints both grids' do
-      expect(grid).to receive(:print_grid).twice
+      expect(grid).to receive(:print_grid2)
+      expect(grid).to receive(:print_grid1)
       game.play_screen(player1)
     end
   end

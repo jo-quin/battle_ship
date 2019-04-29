@@ -30,22 +30,27 @@ EXAMPLE: B5 vertical'
 
   def position_ships(player)
     SHIPS.each do |ship, length|
-      puts @grid.print_grid(player.ships_coordinates)
+      puts @grid.print_grid1(player.ships_coordinates)
       input_coordinates(ship, length, player)
     end
   end
 
   def play_screen(player)
-    puts @grid.print_grid(player.shots_coordinates, 'X')
+    puts @grid.print_grid2(player.shots_coordinates) # refactor 
     puts 
-    puts @grid.print_grid(player.ships_coordinates)
+    puts @grid.print_grid1(player.ships_coordinates)
   end
 
   def fire_shot(player, opponent)
     puts 'Enter shot coordinate:'
-    player.shots_coordinates[:shots] << gets.chomp
-    player.shots_coordinates[:shots].uniq!
-    puts opponent.ships_coordinates.values.flatten.include?(player.shots_coordinates[:shots].last) ? 'HIT!' : 'MISS!'
+    shot = gets.chomp
+    if opponent.ships_coordinates.values.flatten.include?(shot)
+      puts 'HIT!'
+      player.shots_coordinates[:hit] << shot
+    else
+      puts 'MISS!'
+      player.shots_coordinates[:miss] << shot
+    end
   end
 
   private
