@@ -36,7 +36,7 @@ EXAMPLE: B5 vertical'
   end
 
   def play_screen(player)
-    puts @grid.print_grid2(player.shots_coordinates) # refactor 
+    puts @grid.print_grid2(player.shots_coordinates)
     puts 
     puts @grid.print_grid1(player.ships_coordinates)
   end

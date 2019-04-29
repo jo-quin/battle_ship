@@ -1,13 +1,21 @@
 class Grid 
-  def print_grid1(coordinates, sign = 0)
-    coordinates.empty? ? coordinates_array = [] : coordinates_array = coordinates.values.flatten
+  def print_grid1(ships_coordinates, opponents_shots)
+    ships_coordinates.empty? ? coordinates_array = [] : coordinates_array = ships_coordinates.values.flatten
     grid = "  |"
     ('A'..'J').each { |l| grid += " #{l} |" }
     grid += "\n"
     10.times do |n|
       (n == 9)? row = "#{ n + 1 }|" : row = "#{ n + 1 } |"
       ('A'..'J').each do |l|
-        coordinates_array.include?("#{l}#{ n + 1 }") ? row += " #{sign} |" : row += '   |'
+        if opponents_shots[:hit].include?("#{l}#{ n + 1 }")
+          red_x = "\e[31mX\e[0m"
+          row += " #{red_x} |"
+        elsif opponents_shots[:miss].include?("#{l}#{ n + 1 }")
+          blue_x = "\e[34mX\e[0m"
+          row += " #{blue_x} |"
+        else
+          coordinates_array.include?("#{l}#{ n + 1 }") ? row += " 0 |" : row += '   |'
+        end
       end
       grid += row + "\n"
     end
@@ -25,7 +33,8 @@ class Grid
           red_x = "\e[31mX\e[0m"
           row += " #{red_x} |"
         elsif coordinates[:miss].include?("#{l}#{ n + 1 }")
-          row += " X |"
+          blue_x = "\e[34mX\e[0m"
+          row += " #{blue_x} |"
         else
           row += '   |'
         end
