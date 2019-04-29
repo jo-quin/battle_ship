@@ -32,13 +32,13 @@ EXAMPLE: B5 vertical'
     it 'calls ships_coordinates' do
       allow(grid).to receive(:print_grid1)
       expect(game).to receive(:input_coordinates).exactly(Game::SHIPS.length).times
-      game.position_ships(player1)
+      game.position_ships(player1, player2)
     end
 
     it 'prints a new grid with every new ship added' do      
       expect(grid).to receive(:print_grid1).exactly(Game::SHIPS.length).times
       allow(game).to receive(:gets).and_return('B10 horizontal')
-      game.position_ships(player1)
+      game.position_ships(player1, player2)
     end
     # improve these tests to eq the correct output
     context 'horizontal coordinates' do
@@ -46,7 +46,7 @@ EXAMPLE: B5 vertical'
         allow(grid).to receive(:print_grid1)
         allow(game).to receive(:gets).and_return('B10 horizontal')
         expect(player1).to receive(:ships_coordinates)
-        game.position_ships(player1)
+        game.position_ships(player1, player2)
       end
     end
     context 'vertical coordinates' do
@@ -54,7 +54,7 @@ EXAMPLE: B5 vertical'
         allow(grid).to receive(:print_grid1)
         allow(game).to receive(:gets).and_return('C1 vertical')
         expect(player1).to receive(:ships_coordinates)
-        game.position_ships(player1)
+        game.position_ships(player1, player2)
       end
     end
   end
@@ -63,7 +63,7 @@ EXAMPLE: B5 vertical'
     it 'prints both grids' do
       expect(grid).to receive(:print_grid2)
       expect(grid).to receive(:print_grid1)
-      game.play_screen(player1)
+      game.play_screen(player1, player2)
     end
   end
 

@@ -32,4 +32,8 @@ I want to receive a message 'hit or miss' and see on the grid2 my shot in red fo
 As a player
 So I can keep track of my opponent shots
 I want grid1 to show my opponents shots.
+
+As a player
+So I know when I sink a ship
+I want to receive a notification.
 ```

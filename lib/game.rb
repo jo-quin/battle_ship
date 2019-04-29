@@ -28,17 +28,17 @@ class Game
 EXAMPLE: B5 vertical'
   end
 
-  def position_ships(player)
+  def position_ships(player, opponent)
     SHIPS.each do |ship, length|
-      puts @grid.print_grid1(player.ships_coordinates)
+      puts @grid.print_grid1(player.ships_coordinates,opponent.shots_coordinates)
       input_coordinates(ship, length, player)
     end
   end
 
-  def play_screen(player)
+  def play_screen(player, opponent)
     puts @grid.print_grid2(player.shots_coordinates)
     puts 
-    puts @grid.print_grid1(player.ships_coordinates)
+    puts @grid.print_grid1(player.ships_coordinates, opponent.shots_coordinates)
   end
 
   def fire_shot(player, opponent)
@@ -92,9 +92,23 @@ if __FILE__ == $0
   player2 = Player.new('Player2')
   g = Game.new(Grid.new)
   g.position_ships_instructions
-  g.position_ships(player1)
-  g.play_screen(player1)
+  g.position_ships(player1, player2)
+  g.play_screen(player1, player2)
   g.position_ships_instructions
-  g.position_ships(player2)
-  g.play_screen(player2)
+  g.position_ships(player2, player1)
+  g.play_screen(player2, player1)
+  loop do
+    sleep(2)
+    puts "#{player1.name} your turn!"
+    g.play_screen(player1, player2)
+    g.fire_shot(player1, player2)
+    g.play_screen(player1, player2)
+    puts '-------------------------------------------'
+    sleep(2)
+    puts "#{player2.name} your turn!"
+    g.play_screen(player2, player1)
+    g.fire_shot(player2, player1)
+    g.play_screen(player2, player1)
+    puts '-------------------------------------------'
+  end
 end

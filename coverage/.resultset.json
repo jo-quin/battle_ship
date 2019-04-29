@@ -7,7 +7,7 @@
         1,
         11,
         9,
-        4,
+        9,
         11,
         null,
         1,
@@ -194,6 +194,20 @@
         0,
         0,
         0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
         null
       ],
       "/Users/student/Scripts/battle_ship/lib/grid.rb": [
@@ -325,6 +339,6 @@
         null
       ]
     },
-    "timestamp": 1556548154
+    "timestamp": 1556550130
   }
 }
