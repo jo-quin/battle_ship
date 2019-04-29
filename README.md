@@ -27,7 +27,11 @@ I want to see a grid (grid2) with my shots.
 
 As a player
 So I know if my shot hit or miss
-I want to receive a message 'hit or miss' and see on the grid2 my shot in red for a hit and white for a miss.
+I want to see on grid2 my shot in red for a hit and blue for a miss.
+
+As a player
+So I know if my shot hit or miss
+I want to receive a message 'hit or miss'.
 
 As a player
 So I can keep track of my opponent shots
