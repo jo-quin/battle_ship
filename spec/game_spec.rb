@@ -87,5 +87,16 @@ EXAMPLE: B5 vertical'
       expect(STDOUT).to receive(:puts).with 'MISS!'
       game.fire_shot(player1, player2)
     end
+
+    it 'prints SHIP SANK! when opponent hit the last coordinate of the ship' do
+      allow(player2).to receive(:ships_coordinates).and_return({ destroyer: ['B2','E2'], submarine: ['A1', 'A2', 'A3']})
+      allow(game).to receive(:gets).and_return 'B2'
+      game.fire_shot(player1, player2)
+      allow(game).to receive(:gets).and_return 'A1'
+      game.fire_shot(player1, player2)
+      allow(game).to receive(:gets).and_return 'E2'
+      expect(STDOUT).to receive(:puts).with 'DESTROYER SANK!'
+      game.fire_shot(player1, player2)
+    end
   end
 end

@@ -47,6 +47,9 @@ EXAMPLE: B5 vertical'
     if opponent.ships_coordinates.values.flatten.include?(shot)
       puts 'HIT!'
       player.shots_coordinates[:hit] << shot
+      opponent.ships_coordinates.each do |k, v|
+        if v.difference(player.shots_coordinates[:hit]) == [] then puts "#{k.upcase} SANK!" end
+      end
     else
       puts 'MISS!'
       player.shots_coordinates[:miss] << shot
