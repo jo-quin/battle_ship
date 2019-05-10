@@ -14,6 +14,14 @@ So I can position my ships
 I want to to specify my ships positions.
 
 As a player
+So I can properly position my ships
+I should not to be allowed to position ships on the same coordinates
+
+As a player
+So I can properly position my ships
+I should not to be allowed to put ships outside the grid
+
+As a player
 So I can declare my shots
 I want to specify a target square on the grid.
 
