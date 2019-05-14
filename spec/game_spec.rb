@@ -29,22 +29,24 @@ EXAMPLE: B5 vertical'
   end
 
   describe '#position_ships' do
+    # :coordinates = []
     it 'calls ships_coordinates' do
       allow(grid).to receive(:print_grid1)
+      allow(game).to receive(:gets).and_return('B1 vertical', 'A3 vertical', 'E10 horizontal', 'J4 vertical', 'C9 horizontal')
       expect(game).to receive(:input_coordinates).exactly(Game::SHIPS.length).times
       game.position_ships(player1, player2)
     end
 
     it 'prints a new grid with every new ship added' do      
       expect(grid).to receive(:print_grid1).exactly(Game::SHIPS.length).times
-      allow(game).to receive(:gets).and_return('B10 horizontal')
+      allow(game).to receive(:gets).and_return('B1 vertical', 'A3 vertical', 'E10 horizontal', 'J4 vertical', 'C9 horizontal')
       game.position_ships(player1, player2)
     end
     # improve these tests to eq the correct output
     context 'horizontal coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
         allow(grid).to receive(:print_grid1)
-        allow(game).to receive(:gets).and_return('B10 horizontal')
+        allow(game).to receive(:gets).and_return('B1 vertical', 'A3 vertical', 'E10 horizontal', 'J4 vertical', 'C9 horizontal')
         expect(player1).to receive(:ships_coordinates)
         game.position_ships(player1, player2)
       end
@@ -53,26 +55,31 @@ EXAMPLE: B5 vertical'
     context 'vertical coordinates' do
       it 'adds ships and coordinates to coordinates instance variable' do
         allow(grid).to receive(:print_grid1)
-        allow(game).to receive(:gets).and_return('C1 vertical')
+        allow(game).to receive(:gets).and_return('B1 vertical', 'A3 vertical', 'E10 horizontal', 'J4 vertical', 'C9 horizontal')
         expect(player1).to receive(:ships_coordinates)
         game.position_ships(player1, player2)
       end
     end
 
     context 'when entering used coordinates for a new ship' do
-      it 'displays and error message and asks for coordinates again'
+      it 'displays and error message and asks for coordinates again' do
+        allow(grid).to receive(:print_grid1)
+        allow(game).to receive(:gets).and_return('B1 vertical', 'B1 vertical', 'A3 vertical', 'E10 horizontal', 'J4 vertical', 'C9 horizontal')
+        expect(STDOUT).to receive(:puts).with ('Wrong coordinates! Try again.')
+        game.position_ships(player1, player2)
+      end
     end
 
     context 'when new ship is positioned outside the grid' do
       it 'displays and error message and asks for coordinates again (vertical)' do
         allow(grid).to receive(:print_grid1)
-        allow(game).to receive(:gets).and_return('B10 vertical', 'B1 vertical')
+        allow(game).to receive(:gets).and_return('B10 vertical', 'B1 vertical', 'A3 vertical', 'E10 horizontal', 'J4 vertical', 'C9 horizontal')
         expect(STDOUT).to receive(:puts).with ('Wrong coordinates! Try again.')
         game.position_ships(player1, player2)
       end
       it 'displays and error message and asks for coordinates again (horizontal)' do
         allow(grid).to receive(:print_grid1)
-        allow(game).to receive(:gets).and_return('J1 horizontal', 'J1 horizontal','J1 vertical')
+        allow(game).to receive(:gets).and_return('J10 horizontal', 'B3 vertical','A3 vertical', 'E10 horizontal', 'J4 vertical', 'C9 horizontal')
         expect(STDOUT).to receive(:puts).with ('Wrong coordinates! Try again.')
         game.position_ships(player1, player2)
       end      

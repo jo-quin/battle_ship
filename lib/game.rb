@@ -93,6 +93,9 @@ EXAMPLE: B5 vertical'
         coordinates_array << "#{(start_horizontal.ord + n).chr}#{start_vertical}"
       end
     end
+    player.ships_coordinates.each do |ship, coordinates|
+      raise 'Used Coordinates Error' if coordinates.any? { |coordinate| coordinates_array.include? coordinate }
+    end
     player.ships_coordinates[ship] = coordinates_array
   end
 end
