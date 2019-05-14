@@ -31,7 +31,12 @@ EXAMPLE: B5 vertical'
   def position_ships(player, opponent)
     SHIPS.each do |ship, length|
       puts @grid.print_grid1(player.ships_coordinates,opponent.shots_coordinates)
-      input_coordinates(ship, length, player)
+      begin
+        input_coordinates(ship, length, player)
+      rescue
+        puts 'Wrong coordinates! Try again.'
+        retry
+      end
     end
   end
 
@@ -79,10 +84,12 @@ EXAMPLE: B5 vertical'
     coordinates_array = []
     if direction.downcase == 'vertical'
       length.times do |n|
+        raise 'Vertical Error' if (start_vertical + n) > 10
         coordinates_array << "#{start_horizontal}#{start_vertical + n}"
       end
     elsif direction.downcase == 'horizontal'
       length.times do |n|
+        raise 'Horizontal Error' if (start_horizontal.ord + n) > 'J'.ord
         coordinates_array << "#{(start_horizontal.ord + n).chr}#{start_vertical}"
       end
     end
