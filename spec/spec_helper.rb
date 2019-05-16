@@ -111,5 +111,7 @@ RSpec.configure do |config|
 end
 
 RSpec.configure do |c|
-  c.before { allow($stdout).to receive(:puts) }
+  c.before { 
+    allow($stdout).to receive(:puts)
+    }
 end

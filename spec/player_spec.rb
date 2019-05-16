@@ -1,7 +1,8 @@
 require 'player'
 
 describe Player do
-  subject(:player) { Player.new('Player1')}
+  let(:client) {double :client}
+  subject(:player) { Player.new('Player1', client)}
 
   context 'when initialize' do
     it 'has player name' do

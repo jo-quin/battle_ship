@@ -20,52 +20,56 @@ class Game
     SHIPS.each do |ship, length|
       string += "#{ship.capitalize} Length: #{length}\n"
     end
-    puts string
-  end
-
-  def position_ships_instructions
-    puts 'To position your ships on the grid enter starting coordinates (A to J and 1 to 10) and vertical or horizontal.
-EXAMPLE: B5 vertical'
+    string
   end
 
   def position_ships(player, opponent)
+    player.client.puts position_ships_instructions
     SHIPS.each do |ship, length|
-      puts @grid.print_grid1(player.ships_coordinates,opponent.shots_coordinates)
+      player.client.puts @grid.print_grid1(player.ships_coordinates,opponent.shots_coordinates)
       begin
         input_coordinates(ship, length, player)
-      rescue
-        puts 'Wrong coordinates! Try again.'
+      rescue StandardError => e
+        player.client.puts error_message
         retry
       end
     end
+    return player.client.puts "\n All ships positioned and ready! \n"
   end
 
   def play_screen(player, opponent)
-    puts @grid.print_grid2(player.shots_coordinates)
-    puts 
-    puts @grid.print_grid1(player.ships_coordinates, opponent.shots_coordinates)
+    return @grid.print_grid2(player.shots_coordinates), @grid.print_grid1(player.ships_coordinates, opponent.shots_coordinates) #need to return both
   end
 
   def fire_shot(player, opponent)
-    puts 'Enter shot coordinate:'
-    shot = gets.chomp
+    player.client.puts 'Enter shot coordinate:'
+    shot = player.client.gets.chomp
     if opponent.ships_coordinates.values.flatten.include?(shot)
-      puts 'HIT!'
       player.shots_coordinates[:hit] << shot
       opponent.ships_coordinates.each do |k, v|
-        if v.difference(player.shots_coordinates[:hit]) == [] then puts "#{k.upcase} SANK!" end
+        if v.difference(player.shots_coordinates[:hit]) == [] then return "#{k.upcase} SANK!" end
       end
+      return 'HIT!'
     else
-      puts 'MISS!'
       player.shots_coordinates[:miss] << shot
+      return 'MISS!'
     end
   end
 
   private
 
+  def position_ships_instructions
+    return "\n To position your ships on the grid enter starting coordinates (A to J and 1 to 10) and vertical or horizontal.
+EXAMPLE: B5 vertical\n"
+  end
+
+  def error_message
+    return "\n Wrong coordinates! Try again.\n"
+  end
+
   def input_coordinates(ship, length, player)
-    puts "#{ship.capitalize} (#{length}): "
-    coordinates = gets.chomp
+    player.client.puts "#{ship.capitalize} (#{length}): "
+    coordinates = player.client.gets.chomp
     save_ships_coordinates(ship, coordinates, player)
   end
 
@@ -75,6 +79,7 @@ EXAMPLE: B5 vertical'
     start = coordinates.first.split('')
     start_horizontal = start.first
     start_vertical = start[1..-1].join.to_i
+    # catch here the errors in A1, vertical and horizontal
     return direction, start_horizontal, start_vertical
   end
 
@@ -97,31 +102,5 @@ EXAMPLE: B5 vertical'
       raise 'Used Coordinates Error' if coordinates.any? { |coordinate| coordinates_array.include? coordinate }
     end
     player.ships_coordinates[ship] = coordinates_array
-  end
-end
-
-if __FILE__ == $0
-  player1 = Player.new('Player1')
-  player2 = Player.new('Player2')
-  g = Game.new(Grid.new)
-  g.position_ships_instructions
-  g.position_ships(player1, player2)
-  g.play_screen(player1, player2)
-  g.position_ships_instructions
-  g.position_ships(player2, player1)
-  g.play_screen(player2, player1)
-  loop do
-    sleep(2)
-    puts "#{player1.name} your turn!"
-    g.play_screen(player1, player2)
-    g.fire_shot(player1, player2)
-    g.play_screen(player1, player2)
-    puts '-------------------------------------------'
-    sleep(2)
-    puts "#{player2.name} your turn!"
-    g.play_screen(player2, player1)
-    g.fire_shot(player2, player1)
-    g.play_screen(player2, player1)
-    puts '-------------------------------------------'
   end
 end
