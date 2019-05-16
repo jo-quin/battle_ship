@@ -105,4 +105,17 @@ Destroyer Length: 2
       expect(game.fire_shot(player1, player2)).to eq('DESTROYER SANK!')
     end
   end
+
+  describe '#end_game?' do
+    it 'returns true when all ships from a player are destroyed' do
+      allow(player2).to receive(:ships_coordinates).and_return({ destroyer: ['B2','E2']})
+      allow(player1).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:gets).and_return('B2')
+      game.fire_shot(player1, player2)
+      allow(player1).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:gets).and_return('E2')
+      game.fire_shot(player1, player2)
+      expect(game.end_game?(player1, player2)).to be true
+    end
+  end
 end

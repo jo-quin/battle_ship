@@ -56,6 +56,12 @@ class Game
     end
   end
 
+  def end_game?(opponent, player)
+    player.ships_coordinates.each do |k, v|
+      if v.difference(opponent.shots_coordinates[:hit]) == [] then return true end
+    end
+  end
+
   private
 
   def position_ships_instructions
