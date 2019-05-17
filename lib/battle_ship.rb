@@ -1,20 +1,23 @@
 require 'socket'
 require_relative 'game'
 require_relative 'grid'
+require_relative 'player'
 
 class Battle_Ship
-
-  attr_accessor :game
   
   def initialize(game = Game.new(grid = Grid.new))
     @port = 2979
     @server = TCPServer.open(@port)
     @game = game
+    @players = []
   end
 
-  def accept_client
+  def accept_player
     client = @server.accept
-    client.puts "Welcome to BattleShip!!!"
+    client.puts 'Enter your name:'
+    player = Player.new(client.gets.chomp , client)
+    player.client.puts "Welcome to BattleShip #{player.name}!!!"
+    @players << player
   end
 
   def close

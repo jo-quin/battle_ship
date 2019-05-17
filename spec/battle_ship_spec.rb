@@ -7,7 +7,7 @@ describe Battle_Ship do
 
   before(:each) do
     @server = Battle_Ship.new(game)
-    @accept = Thread.new{@server.accept_client}
+    @accept = Thread.new{@server.accept_player}
   end
 
   after(:each) do
@@ -17,12 +17,9 @@ describe Battle_Ship do
 
   it 'opens a TCPserver in port 2979 and says Welcome to BattleShip!!! to the client' do
     client = TCPSocket.new('localhost', 2979)
-    expect(client.gets.chomp).to eq('Welcome to BattleShip!!!')
-  end
-
-  it 'initializes a game object' do
-    client = TCPSocket.new('localhost', 2979)
-    expect(@server.game).to eq(game)
+    client.puts 'Jose'
+    expect(client.gets.chomp).to eq('Enter your name:')
+    expect(client.gets.chomp).to eq('Welcome to BattleShip Jose!!!')
   end
 
   it 'assign clients to player 1 and player 2'
