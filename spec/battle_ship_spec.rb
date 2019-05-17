@@ -17,14 +17,22 @@ describe Battle_Ship do
 
   it 'opens a TCPserver in port 2979 and says Welcome to BattleShip!!! to the client' do
     client = TCPSocket.new('localhost', 2979)
-    client.puts 'Jose'
+    client.puts 'Player 1'
     expect(client.gets.chomp).to eq('Enter your name:')
-    expect(client.gets.chomp).to eq('Welcome to BattleShip Jose!!!')
+    expect(client.gets.chomp).to eq('Welcome to BattleShip Player 1!!!')
   end
 
-  it 'assign clients to player 1 and player 2'
-
-  it 'allow players to position their ships'
+  it 'allow players to position their ships' do
+    client = TCPSocket.new('localhost', 2979)
+    client.puts 'Player 1'
+    accept = Thread.new{@server.accept_player}
+    client = TCPSocket.new('localhost', 2979)
+    client.puts 'Player 2'
+    accept.join
+    expect(game).to receive(:position_ships).twice
+    expect(game).to receive(:play_screen).twice
+    @server.position_ships
+  end
 
   it 'loops through shooting rounds'
 

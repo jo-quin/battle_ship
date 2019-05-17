@@ -20,6 +20,14 @@ class Battle_Ship
     @players << player
   end
 
+  def position_ships
+    @players.each do |player|
+      opponent = @players.select { |p| p != player }[0]
+      player.client.puts @game.position_ships(player, opponent)
+      player.client.puts @game.play_screen(player, opponent)
+    end
+  end
+
   def close
     @server.close
   end
