@@ -46,5 +46,11 @@ describe Battle_Ship do
     @server.round
   end
 
-  it 'ends when all ships from a player are destroyed'
+  it 'ends when game.end_game? eq true' do
+    players_join_game
+    allow(game).to receive(:play_screen)
+    allow(game).to receive(:fire_shot)
+    allow(game).to receive(:end_game?).and_return(true)
+    expect(@server.round).to eq(:end_game)
+  end
 end

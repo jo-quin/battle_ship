@@ -36,12 +36,24 @@ class Battle_Ship
       player.client.puts @game.play_screen(player, opponent)
       player.client.puts @game.fire_shot(player, opponent)
       player.client.puts @game.play_screen(player, opponent)
-      player.client.puts "#{opponent.name}'s' turn."
+      if winner?(player, opponent) then return :end_game end
+      player.client.puts "#{opponent.name}'s turn."
     end
   end
 
   def close
     @server.close
+  end
+
+  private
+
+  def winner?(player, opponent)
+    if @game.end_game?(player, opponent)
+      @players.each do |p|
+        p.client.puts "#{player.name.upcase} WINS!!!"
+      end
+      true
+    end
   end
 end
 
@@ -50,7 +62,8 @@ if __FILE__ == $0
   2.times do server.accept_player end
   server.position_ships
   loop {
-    server.round
+    break if server.round == :end_game
   }
+  puts 'game finished'
   server.close
 end
