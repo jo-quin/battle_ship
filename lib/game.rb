@@ -24,6 +24,7 @@ class Game
   end
 
   def position_ships(player, opponent)
+    player.client.puts "\e[H\e[2J"
     player.client.puts position_ships_instructions
     SHIPS.each do |ship, length|
       player.client.puts @grid.print_grid1(player.ships_coordinates,opponent.shots_coordinates)
@@ -33,6 +34,7 @@ class Game
         player.client.puts error_message
         retry
       end
+      player.client.puts "\e[H\e[2J"
     end
     return player.client.puts "\n All ships positioned and ready! \n"
   end
@@ -56,9 +58,9 @@ class Game
     end
   end
 
-  def end_game?(opponent, player)
-    player.ships_coordinates.each do |k, v|
-      if v.difference(opponent.shots_coordinates[:hit]) == [] then return true end
+  def end_game?(player, opponent)
+    opponent.ships_coordinates.all? do |k, v|
+      v.difference(player.shots_coordinates[:hit]) == []
     end
   end
 

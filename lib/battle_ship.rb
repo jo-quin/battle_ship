@@ -31,12 +31,16 @@ class Battle_Ship
 
   def round
     @players.each do |player|
+      player.client.puts "\e[H\e[2J"
       opponent = @players.select { |p| p != player }[0]
       player.client.puts "#{player.name} your turn!"
       player.client.puts @game.play_screen(player, opponent)
       player.client.puts @game.fire_shot(player, opponent)
+      player.client.puts "\e[H\e[2J"
       player.client.puts @game.play_screen(player, opponent)
-      if winner?(player, opponent) then return :end_game end
+      if @game.end_game?(player, opponent) == true
+        return winner(player)
+      end
       player.client.puts "#{opponent.name}'s turn."
     end
   end
@@ -47,13 +51,11 @@ class Battle_Ship
 
   private
 
-  def winner?(player, opponent)
-    if @game.end_game?(player, opponent)
-      @players.each do |p|
-        p.client.puts "#{player.name.upcase} WINS!!!"
-      end
-      true
+  def winner(player)
+    @players.each do |p|
+      p.client.puts "#{player.name.upcase} WINS!!!"
     end
+    return :end_game
   end
 end
 
@@ -62,8 +64,9 @@ if __FILE__ == $0
   2.times do server.accept_player end
   server.position_ships
   loop {
-    break if server.round == :end_game
+    if server.round == :end_game
+      break
+    end
   }
-  puts 'game finished'
   server.close
 end

@@ -108,12 +108,22 @@ Destroyer Length: 2
 
   describe '#end_game?' do
     it 'returns true when all ships from a player are destroyed' do
-      allow(player2).to receive(:ships_coordinates).and_return({ destroyer: ['B2','E2']})
+      allow(player2).to receive(:ships_coordinates).and_return({ submarine: ['A1', 'A2', 'A3'], destroyer: ['B2','E2']})
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('B2')
       game.fire_shot(player1, player2)
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('E2')
+      game.fire_shot(player1, player2)
+      expect(game.end_game?(player1, player2)).to be false
+      allow(player1).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:gets).and_return('A1')
+      game.fire_shot(player1, player2)
+      allow(player1).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:gets).and_return('A2')
+      game.fire_shot(player1, player2)
+      allow(player1).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:gets).and_return('A3')
       game.fire_shot(player1, player2)
       expect(game.end_game?(player1, player2)).to be true
     end
