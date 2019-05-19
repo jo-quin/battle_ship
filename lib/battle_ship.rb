@@ -31,12 +31,12 @@ class Battle_Ship
 
   def round
     @players.each do |player|
-      player.client.puts "\e[H\e[2J"
+      player.client.puts clear_screen
       opponent = @players.select { |p| p != player }[0]
       player.client.puts "#{player.name} your turn!"
       player.client.puts @game.play_screen(player, opponent)
       player.client.puts @game.fire_shot(player, opponent)
-      player.client.puts "\e[H\e[2J"
+      player.client.puts clear_screen
       player.client.puts @game.play_screen(player, opponent)
       if @game.end_game?(player, opponent) == true
         return winner(player)
@@ -50,6 +50,10 @@ class Battle_Ship
   end
 
   private
+
+  def clear_screen
+    return "\e[H\e[2J"
+  end
 
   def winner(player)
     @players.each do |p|

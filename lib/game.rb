@@ -24,7 +24,7 @@ class Game
   end
 
   def position_ships(player, opponent)
-    player.client.puts "\e[H\e[2J"
+    player.client.puts clear_screen
     player.client.puts position_ships_instructions
     SHIPS.each do |ship, length|
       player.client.puts @grid.print_grid1(player.ships_coordinates,opponent.shots_coordinates)
@@ -34,7 +34,7 @@ class Game
         player.client.puts error_message
         retry
       end
-      player.client.puts "\e[H\e[2J"
+      player.client.puts clear_screen
     end
     return player.client.puts "\n All ships positioned and ready! \n"
   end
@@ -65,6 +65,10 @@ class Game
   end
 
   private
+
+  def clear_screen
+    return "\e[H\e[2J"
+  end
 
   def position_ships_instructions
     return "\n To position your ships on the grid enter starting coordinates (A to J and 1 to 10) and vertical or horizontal.

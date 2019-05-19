@@ -18,6 +18,10 @@ Destroyer Length: 2
     end
   end
 
+  before(:each) do
+    allow(game).to receive(:clear_screen).exactly(Game::SHIPS.length + 1)
+  end
+
   describe '#position_ships' do
     it 'calls ships_coordinates' do
       allow(grid).to receive(:print_grid1)
