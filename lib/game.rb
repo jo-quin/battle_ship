@@ -51,8 +51,12 @@ class Game
       opponent.ships_coordinates.each do |k, v|
         if v.difference(player.shots_coordinates[:hit]) == [] then return "#{k.upcase} SANK!" end
       end
+      player.client.puts "\e[H\e[2J"
+      opponent.client.puts "#{player.name} hits!"
       return 'HIT!'
     else
+      player.client.puts "\e[H\e[2J"
+      opponent.client.puts "#{player.name} miss!"
       player.shots_coordinates[:miss] << shot
       return 'MISS!'
     end

@@ -2,8 +2,8 @@ require 'game'
 
 describe Game do
   let(:grid) { double :grid }
-  let(:player1) { double(:player1, ships_coordinates: {}, shots_coordinates: { hit: [], miss: []}) }
-  let(:player2) { double(:player2, ships_coordinates: {}, shots_coordinates: { hit: [], miss: []}) }
+  let(:player1) { double(:player1, name: '', ships_coordinates: {}, shots_coordinates: { hit: [], miss: []}) }
+  let(:player2) { double(:player2, name: '', ships_coordinates: {}, shots_coordinates: { hit: [], miss: []}) }
   subject(:game) { Game.new(grid) }
 
   describe '#ships' do
@@ -79,6 +79,8 @@ Destroyer Length: 2
     it 'ask for shot coordinate' do
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       game.fire_shot(player1, player2)
     end
     
@@ -86,6 +88,8 @@ Destroyer Length: 2
       allow(player2).to receive(:ships_coordinates).and_return({ destroyer: ['B2', 'E2']})
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('B2')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       expect(game.fire_shot(player1, player2)).to eq('HIT!')
     end
 
@@ -93,6 +97,8 @@ Destroyer Length: 2
       allow(player2).to receive(:ships_coordinates).and_return({ destroyer: ['B2', 'E2']})
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('A2')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       expect(game.fire_shot(player1, player2)).to eq('MISS!')
     end
 
@@ -100,12 +106,18 @@ Destroyer Length: 2
       allow(player2).to receive(:ships_coordinates).and_return({ destroyer: ['B2','E2'], submarine: ['A1', 'A2', 'A3']})
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('B2')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       game.fire_shot(player1, player2)
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('A1')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       game.fire_shot(player1, player2)
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('E2')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       expect(game.fire_shot(player1, player2)).to eq('DESTROYER SANK!')
     end
   end
@@ -115,19 +127,29 @@ Destroyer Length: 2
       allow(player2).to receive(:ships_coordinates).and_return({ submarine: ['A1', 'A2', 'A3'], destroyer: ['B2','E2']})
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('B2')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       game.fire_shot(player1, player2)
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('E2')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       game.fire_shot(player1, player2)
       expect(game.end_game?(player1, player2)).to be false
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('A1')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       game.fire_shot(player1, player2)
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('A2')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       game.fire_shot(player1, player2)
       allow(player1).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:gets).and_return('A3')
+      allow(player2).to receive(:client).and_return(i = IO.new(1))
+      allow(i).to receive(:puts)
       game.fire_shot(player1, player2)
       expect(game.end_game?(player1, player2)).to be true
     end

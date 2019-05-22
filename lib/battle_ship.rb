@@ -36,6 +36,7 @@ class Battle_Ship
       player.client.puts "#{player.name} your turn!"
       player.client.puts @game.play_screen(player, opponent)
       player.client.puts @game.fire_shot(player, opponent)
+      sleep(2)
       player.client.puts clear_screen
       player.client.puts @game.play_screen(player, opponent)
       if @game.end_game?(player, opponent) == true
