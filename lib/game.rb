@@ -88,10 +88,11 @@ EXAMPLE: B5 vertical\n"
   def split_coordinates(coordinates)
     coordinates = coordinates.split(' ')
     direction = coordinates.last
+    raise 'Typo Error' unless ['vertical', 'horizontal'].include? direction.downcase
     start = coordinates.first.split('')
-    start_horizontal = start.first
+    start_horizontal = start.first.upcase
+    raise 'Typo Error' unless ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].include? start_horizontal
     start_vertical = start[1..-1].join.to_i
-    # catch here the errors in A1, vertical and horizontal
     return direction, start_horizontal, start_vertical
   end
 
