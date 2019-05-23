@@ -90,7 +90,8 @@ Destroyer Length: 2
       allow(i).to receive(:gets).and_return('B2')
       allow(player2).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:puts)
-      expect(game.fire_shot(player1, player2)).to eq('HIT!')
+      expect(game).to receive(:draw).with('hit')
+      game.fire_shot(player1, player2)
     end
 
     it "prints miss when shot miss opponent's ship" do
@@ -99,7 +100,8 @@ Destroyer Length: 2
       allow(i).to receive(:gets).and_return('A2')
       allow(player2).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:puts)
-      expect(game.fire_shot(player1, player2)).to eq('MISS!')
+      expect(game).to receive(:draw).with('miss')
+      game.fire_shot(player1, player2)
     end
 
     it 'prints SHIP SANK! when opponent hit the last coordinate of the ship' do

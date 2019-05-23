@@ -1,7 +1,10 @@
 require_relative 'grid'
 require_relative 'player'
+require_relative 'termiro'
 
 class Game
+  include Termiro
+
   attr_reader :ships_coordinates
   SHIPS = {
     carrier: 5,
@@ -53,12 +56,12 @@ class Game
       end
       player.client.puts "\e[H\e[2J"
       opponent.client.puts "#{player.name} hits!"
-      return 'HIT!'
+      return draw('hit')
     else
       player.client.puts "\e[H\e[2J"
       opponent.client.puts "#{player.name} miss!"
       player.shots_coordinates[:miss] << shot
-      return 'MISS!'
+      return draw('miss')
     end
   end
 

@@ -1,0 +1,11 @@
+
+----------------------------------------------------------------    
+--------bbb---------bbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bbbb--
+-------bbbb------bbbbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bbbb---
+------bbbbbb--bbb-bbb---bbbb---bbb-----------bbb-----------bbb-----
+-----bbb--bbbbb--bbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bbb------
+----bbb----bb---bbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bb--------
+---bbb---------bbb---bbbb-----------bbb-----------bbb--------------
+--bbb---------bbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bbb---------
+-bbb---------bbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bbb----------
+----------------------------------------------------------------

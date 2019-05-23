@@ -1,0 +1,11 @@
+
+-----------------------------------------------
+--------rrr------rrr---rrrr---rrrrrrrrrr--rrrr-
+-------rrr------rrr---rrrr---rrrrrrrrrr--rrrr--
+------rrr------rrr---rrrr------rrrr-----rrr----
+-----rrrrrrrrrrrr---rrrr------rrrr-----rrr-----
+----rrrrrrrrrrrr---rrrr------rrrr-----rr-------
+---rrr------rrr---rrrr------rrrr---------------
+--rrr------rrr---rrrr------rrrr-----rrr--------
+-rrr------rrr---rrrr------rrrr-----rrr---------
+-----------------------------------------------
