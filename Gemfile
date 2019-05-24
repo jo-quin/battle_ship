@@ -15,3 +15,5 @@ gem "simplecov", "~> 0.16.1"
 gem "simplecov-console", "~> 0.4.2"
 
 gem "coveralls", "~> 0.8.23"
+
+gem "rake", "~> 12.3"
