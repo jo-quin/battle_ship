@@ -115,3 +115,6 @@ RSpec.configure do |c|
     allow($stdout).to receive(:puts)
     }
 end
+
+require 'coveralls'
+Coveralls.wear!
