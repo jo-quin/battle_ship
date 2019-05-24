@@ -8,10 +8,10 @@ class Grid
       (n == 9)? row = " #{ n + 1 }|" : row = " #{ n + 1 } |"
       ('A'..'J').each do |l|
         if opponents_shots[:hit].include?("#{l}#{ n + 1 }")
-          red_x = "\e[31mX\e[0m"
+          red_x = "\e[91mX\e[0m"
           row += " #{red_x} |"
         elsif opponents_shots[:miss].include?("#{l}#{ n + 1 }")
-          blue_x = "\e[34mX\e[0m"
+          blue_x = "\e[36mX\e[0m"
           row += " #{blue_x} |"
         else
           coordinates_array.include?("#{l}#{ n + 1 }") ? row += " 0 |" : row += '   |'
@@ -30,10 +30,10 @@ class Grid
       (n == 9)? row = " #{ n + 1 }|" : row = " #{ n + 1 } |"
       ('A'..'J').each do |l|
         if coordinates[:hit].include?("#{l}#{ n + 1 }")
-          red_x = "\e[31mX\e[0m"
+          red_x = "\e[91mX\e[0m"
           row += " #{red_x} |"
         elsif coordinates[:miss].include?("#{l}#{ n + 1 }")
-          blue_x = "\e[34mX\e[0m"
+          blue_x = "\e[36mX\e[0m"
           row += " #{blue_x} |"
         else
           row += '   |'
