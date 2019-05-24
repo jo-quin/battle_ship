@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/jo-quin/battle_ship/badge.svg?branch=master)](https://coveralls.io/github/jo-quin/battle_ship?branch=master)
+
 # Battle_ship
 
 I want to build a Battle Ship game on the terminal.
