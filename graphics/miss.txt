@@ -1,11 +1,11 @@
 
 ----------------------------------------------------------------    
---------bbb---------bbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bbbb--
--------bbbb------bbbbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bbbb---
-------bbbbbb--bbb-bbb---bbbb---bbb-----------bbb-----------bbb-----
------bbb--bbbbb--bbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bbb------
-----bbb----bb---bbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bb--------
----bbb---------bbb---bbbb-----------bbb-----------bbb--------------
---bbb---------bbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bbb---------
--bbb---------bbb---bbbb---bbbbbbbbbbb---bbbbbbbbbbb---bbb----------
+--------bbb---------bbbw--bbbbw--bbbbbbbbbbbw--bbbbbbbbbbbw--bbbbw-
+-------bbbb------bbbbbw--bbbbw--bbbbbbbbbbbw--bbbbbbbbbbbw--bbbbw--
+------bbbbbb--bbbwbbbw--bbbbw--bbbw----------bbbw----------bbbw----
+-----bbbw-bbbbbw-bbbw--bbbbw--bbbbbbbbbbbw--bbbbbbbbbbbw--bbbw-----
+----bbbw---bbw--bbbw--bbbbw--bbbbbbbbbbbw--bbbbbbbbbbbw--bbw-------
+---bbbw--------bbbw--bbbbw----------bbbw----------bbbw-------------
+--bbbw--------bbbw--bbbbw--bbbbbbbbbbbw--bbbbbbbbbbbw--bbbw--------
+-bbbw--------bbbw--bbbbw--bbbbbbbbbbbw--bbbbbbbbbbbw--bbbw---------
 ----------------------------------------------------------------

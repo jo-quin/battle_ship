@@ -1,11 +1,11 @@
 
 -----------------------------------------------
---------rrr------rrr---rrrr---rrrrrrrrrr--rrrr-
--------rrr------rrr---rrrr---rrrrrrrrrr--rrrr--
-------rrr------rrr---rrrr------rrrr-----rrr----
------rrrrrrrrrrrr---rrrr------rrrr-----rrr-----
-----rrrrrrrrrrrr---rrrr------rrrr-----rr-------
----rrr------rrr---rrrr------rrrr---------------
---rrr------rrr---rrrr------rrrr-----rrr--------
--rrr------rrr---rrrr------rrrr-----rrr---------
+--------rrrw-----rrrw--rrrrw--rrrrrrrrrrw-rrrrw
+-------rrrw-----rrrw--rrrrw--rrrrrrrrrrw-rrrrw-
+------rrrw-----rrrw--rrrrw-----rrrrwwww-rrrw---
+-----rrrrrrrrrrrrw--rrrrw-----rrrrw----rrrw----
+----rrrwwwwwwrrrw--rrrrw-----rrrrw----rrw------
+---rrrw-----rrrw--rrrrw-----rrrrw--------------
+--rrrw-----rrrw--rrrrw-----rrrrw----rrrw-------
+-rrrw-----rrrw--rrrrw-----rrrrw----rrrw--------
 -----------------------------------------------
