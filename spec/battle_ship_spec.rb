@@ -1,4 +1,4 @@
-require 'battle_ship'
+require_relative '../lib/battle_ship'
 require 'socket'
 
 describe Battle_Ship do
