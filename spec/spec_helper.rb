@@ -100,6 +100,8 @@ RSpec.configure do |config|
 end
 require "simplecov"
 require "simplecov-console"
+require 'coveralls'
+Coveralls.wear!
 SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start
 RSpec.configure do |config|
@@ -116,5 +118,3 @@ RSpec.configure do |c|
     }
 end
 
-require 'coveralls'
-Coveralls.wear!
