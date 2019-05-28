@@ -5,7 +5,7 @@ describe Computer_Player do
     it 'declares shots'
   end
 
-  decribe '#position_ships' do
-    it 'position ship'
+  describe '#ship_valid_coordinates' do
+    it 'creates random valid coordinates for each ship'
   end
 end
