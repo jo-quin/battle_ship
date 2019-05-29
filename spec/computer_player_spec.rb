@@ -1,6 +1,6 @@
 require 'computer_player'
 
-describe Computer_Player do
+describe ComputerPlayer do
   describe '#shots' do
     it 'declares shots'
   end
@@ -15,9 +15,9 @@ describe Computer_Player do
 
     it 'creates random valid vertical coordinates for each ship' do
       coordinates = subject.ship_valid_coordinates('destroyer')
-      expect(coordinates.split('').last.to_i).to be <= 9
+      expect(coordinates.split('')[1].to_i).to be <= 9
       coordinates = subject.ship_valid_coordinates('cruiser')
-      expect(coordinates.split('').last.to_i).to be <= 8
+      expect(coordinates.split('')[1].to_i).to be <= 8
     end
   end
 end
