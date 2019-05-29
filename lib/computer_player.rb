@@ -7,5 +7,12 @@ class Computer_Player
     submarine: { length: 3, vertical: 8 , horizontal: 'H' },
     destroyer: { length: 2, vertical: 9 , horizontal: 'I' }
   }
+
+  def ship_valid_coordinates(ship)
+    ship_attributes = SHIPS[ship.to_sym]
+    vertical_coordinate = rand(0..ship_attributes[:vertical])
+    horizontal_coordinate = rand(65..ship_attributes[:horizontal].ord).chr
+    "#{horizontal_coordinate}#{vertical_coordinate}"
+  end
   
 end

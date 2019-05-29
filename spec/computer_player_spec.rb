@@ -6,6 +6,18 @@ describe Computer_Player do
   end
 
   describe '#ship_valid_coordinates' do
-    it 'creates random valid coordinates for each ship'
+    it 'creates random valid horizontal coordinates for each ship' do
+      coordinates = subject.ship_valid_coordinates('destroyer')
+      expect(coordinates.split('').first.ord).to be <= 'I'.ord
+      coordinates = subject.ship_valid_coordinates('cruiser')
+      expect(coordinates.split('').first.ord).to be <= 'H'.ord
+    end
+
+    it 'creates random valid vertical coordinates for each ship' do
+      coordinates = subject.ship_valid_coordinates('destroyer')
+      expect(coordinates.split('').last.to_i).to be <= 9
+      coordinates = subject.ship_valid_coordinates('cruiser')
+      expect(coordinates.split('').last.to_i).to be <= 8
+    end
   end
 end
