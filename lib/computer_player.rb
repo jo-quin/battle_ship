@@ -9,9 +9,14 @@ class ComputerPlayer
 
   def ship_valid_coordinates(ship, direction = ship_direction)
     ship_attributes = SHIPS[ship.to_sym]
-    vertical_coordinate = rand(0..ship_attributes[:vertical])
-    horizontal_coordinate = rand(65..ship_attributes[:horizontal].ord).chr
-    "#{horizontal_coordinate}#{vertical_coordinate} #{direction}"
+    if direction == 'vertical'
+      vertical_coordinate = rand(1..ship_attributes[:vertical])
+      horizontal_coordinate = rand(65..74).chr
+    elsif direction == 'horizontal'
+      horizontal_coordinate = rand(65..ship_attributes[:horizontal].ord).chr
+      vertical_coordinate = rand(1..10)
+    end
+    p "#{horizontal_coordinate}#{vertical_coordinate} #{direction}"
   end
 
   private
