@@ -7,6 +7,15 @@ class ComputerPlayer
     destroyer: { length: 2, vertical: 9, horizontal: 'I' }
   }
 
+  attr_reader :name, :client, :ships_coordinates, :shots_coordinates
+
+  def initialize(name = 'Computer', client)
+    @name = name
+    @client = client
+    @ships_coordinates = {}
+    @shots_coordinates = { hit: [], miss: [] }
+  end
+
   def ship_valid_coordinates(ship, direction = ship_direction)
     ship_attributes = SHIPS[ship.to_sym]
     if direction == 'vertical'
@@ -16,7 +25,7 @@ class ComputerPlayer
       horizontal_coordinate = rand(65..ship_attributes[:horizontal].ord).chr
       vertical_coordinate = rand(1..10)
     end
-    p "#{horizontal_coordinate}#{vertical_coordinate} #{direction}"
+    "#{horizontal_coordinate}#{vertical_coordinate} #{direction}"
   end
 
   private
