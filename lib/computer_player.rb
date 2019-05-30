@@ -18,9 +18,9 @@ class ComputerPlayer
 
   def input(line = @client.gets)
     begin
-      if line == 'Enter your name:'
+      if line.chop == 'Enter your name:'
         @client.puts @name
-      elsif line == 'Enter shot coordinate:'
+      elsif line.chop == 'Enter shot coordinate:'
         @client.puts shot
       elsif SHIPS.include? line.chop.split(' ').first.downcase.to_sym
         @client.puts ship_valid_coordinates(line.chop.split(' ').first.downcase)
