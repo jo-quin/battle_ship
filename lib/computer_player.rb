@@ -16,6 +16,12 @@ class ComputerPlayer
     @shots_coordinates = { hit: [], miss: [] }
   end
 
+  def input(line = @client.gets)
+    if SHIPS.include? line.chop.split(' ').first.downcase.to_sym
+      @client.puts ship_valid_coordinates(line.chop.split(' ').first.downcase)
+    end
+  end
+
   def ship_valid_coordinates(ship, direction = ship_direction)
     ship_attributes = SHIPS[ship.to_sym]
     if direction == 'vertical'

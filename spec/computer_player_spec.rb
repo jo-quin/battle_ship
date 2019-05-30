@@ -4,13 +4,23 @@ describe ComputerPlayer do
   let(:client) {double :client}
   subject(:computer) {ComputerPlayer.new('Computer', client)}
 
+  describe '#input'do
+    context 'should read from terminal to decide which method to run' do
+      it 'should call ship_valid_coordinates when receiving "Carrier (5):"' do
+        expect(computer).to receive(:ship_valid_coordinates)
+        allow(client).to receive(:puts)
+        computer.input('Carrier (5):')
+      end
+
+      it 'should call shots when receiving "Enter shot coordinate:"'
+    end
+  end
+
   describe '#shots' do
     it 'declares shots'
   end
 
   describe '#ship_valid_coordinates' do
-    it 'should read from terminal which ship to position'
-    
     context 'when direction is vertical' do
       it 'creates random valid vertical coordinates for each ship' do
         coordinates = computer.ship_valid_coordinates('destroyer', 'vertical')
