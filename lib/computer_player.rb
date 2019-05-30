@@ -17,9 +17,19 @@ class ComputerPlayer
   end
 
   def input(line = @client.gets)
-    if SHIPS.include? line.chop.split(' ').first.downcase.to_sym
-      @client.puts ship_valid_coordinates(line.chop.split(' ').first.downcase)
+    begin
+      if line == 'Enter your name:'
+        @client.puts @name
+      elsif line == 'Enter shot coordinate:'
+        @client.puts shot
+      elsif SHIPS.include? line.chop.split(' ').first.downcase.to_sym
+        @client.puts ship_valid_coordinates(line.chop.split(' ').first.downcase)
+      end
+    rescue
     end
+  end
+
+  def shot
   end
 
   def ship_valid_coordinates(ship, direction = ship_direction)
