@@ -1,25 +1,20 @@
 require 'computer_player'
 
 describe ComputerPlayer do
-  let(:client) {double :client}
-  subject(:computer) {ComputerPlayer.new('Computer', client)}
+  subject(:computer) {ComputerPlayer.new()}
 
   describe '#input'do
     context 'should read from terminal to decide which method to run' do
       it 'should call the name attribute when receiving "Enter your name:"' do
-        expect(client).to receive(:puts).with(computer.name)
-        computer.input('Enter your name: ')
+        expect(computer.input('Enter your name: ')).to eq(computer.name)
       end
       it 'should call ship_valid_coordinates when receiving "Carrier (5):"' do
         expect(computer).to receive(:ship_valid_coordinates).with('carrier')
-        allow(client).to receive(:puts)
         computer.input('Carrier (5):')
       end
 
       it 'should call shots when receiving "Enter shot coordinate:"' do
-        expect(computer).to receive(:shot)
-        allow(client).to receive(:puts)
-        computer.input('Enter shot coordinate: ')
+        expect(computer.shots).to include(computer.input('Enter shot coordinate: '))
       end
     end
   end

@@ -7,29 +7,30 @@ class ComputerPlayer
     destroyer: { length: 2, vertical: 9, horizontal: 'I' }
   }
 
-  attr_reader :name, :client, :ships_coordinates, :shots_coordinates
+  attr_reader :name, :shots
 
-  def initialize(name = 'Computer', client)
+  def initialize(name = 'Computer')
     @name = name
-    @client = client
-    @ships_coordinates = {}
-    @shots_coordinates = { hit: [], miss: [] }
-  end
-
-  def input(line = @client.gets)
-    begin
-      if line.chop == 'Enter your name:'
-        @client.puts @name
-      elsif line.chop == 'Enter shot coordinate:'
-        @client.puts shot
-      elsif SHIPS.include? line.chop.split(' ').first.downcase.to_sym
-        @client.puts ship_valid_coordinates(line.chop.split(' ').first.downcase)
+    @shots = []
+    
+    ('A'..'J').each do |l|
+      10.times do |n|
+        @shots<<"#{l}#{n+1}"
       end
-    rescue
     end
   end
 
-  def shot
+  def input(line)
+    begin
+      if line.chop == 'Enter your name:'
+        @name
+      elsif line.chop == 'Enter shot coordinate:'
+        @shots.sample
+      elsif SHIPS.include? line.chop.split(' ').first.downcase.to_sym
+        ship_valid_coordinates(line.chop.split(' ').first.downcase)
+      end
+    rescue
+    end
   end
 
   def ship_valid_coordinates(ship, direction = ship_direction)

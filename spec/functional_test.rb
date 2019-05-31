@@ -2,11 +2,11 @@ require 'socket'
 require_relative '../lib/computer_player.rb'
 
 client = TCPSocket.new('localhost', 2979)
-computer = ComputerPlayer.new(client = client)
+computer = ComputerPlayer.new()
 
 get = Thread.new {
-  while line = computer.client.gets
-    computer.client.puts computer.input(line)
+  while line = client.gets
+    client.puts computer.input(line)
     puts line.chop
   end
 }
