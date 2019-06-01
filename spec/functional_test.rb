@@ -6,8 +6,12 @@ computer = ComputerPlayer.new()
 
 get = Thread.new {
   while line = client.gets
-    client.puts computer.input(line)
+    c = computer.input(line)
     puts line.chop
+    if c != nil
+      client.puts c
+      puts c
+    end
   end
 }
 
