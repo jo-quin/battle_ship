@@ -24,9 +24,11 @@ class ComputerPlayer
     begin
       if line.chop == 'Enter your name:'
         @name
-      elsif line.chop == 'Enter shot coordinate:' || line.chop.split(' ')[-1] == 'SANK!'
-        @shots.sample
-      elsif SHIPS.include? line.chop.split(' ').first.downcase.to_sym
+      elsif line.chop == 'Enter shot coordinate:'
+        shot = @shots.sample
+        @shots.delete(shot)
+        shot
+      elsif SHIPS.include? line.chop.split(' ').first.downcase.to_sym and line.chop.split(' ')[-1] != 'SANK!'
         ship_valid_coordinates(line.chop.split(' ').first.downcase)
       end
     rescue

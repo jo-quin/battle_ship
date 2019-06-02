@@ -13,8 +13,8 @@ describe ComputerPlayer do
         computer.input('Carrier (5):')
       end
 
-      it 'should call shots when receiving "Enter shot coordinate:"' do
-        expect(computer.shots).to include(computer.input('Enter shot coordinate: '))
+      it 'should remove one shot coordinate from shots when receiving "Enter shot coordinate:"' do
+        expect{ computer.input('Enter shot coordinate: ') }.to change{ computer.shots.length }.by -1
       end
     end
   end
