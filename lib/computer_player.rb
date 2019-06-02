@@ -47,6 +47,22 @@ class ComputerPlayer
     "#{horizontal_coordinate}#{vertical_coordinate} #{direction}"
   end
 
+  def shot_option_1(shot)
+    (shot[0].ord + 1).chr + shot[1]
+  end
+
+  def shot_option_2(shot)
+    (shot[0].ord - 1).chr + shot[1]
+  end
+
+  def shot_option_3(shot)
+    shot[0] + (shot[1].to_i + 1).to_s
+  end
+
+  def shot_option_4(shot)
+    shot[0] + (shot[1].to_i - 1).to_s
+  end
+
   private
 
   def ship_direction

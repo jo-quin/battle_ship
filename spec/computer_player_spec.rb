@@ -23,6 +23,32 @@ describe ComputerPlayer do
     it 'declares shots'
   end
 
+  describe 'SHOT_OPTIONS' do
+    context '#shot_option_1' do
+      it 'should return last shot with letter up' do
+        expect(computer.shot_option_1('B1')).to eq('C1')
+      end
+    end
+
+    context '#shot_option_2' do
+      it 'should return last shot with letter down' do
+        expect(computer.shot_option_2('B1')).to eq('A1')
+      end
+    end
+
+    context '#shot_option_3' do
+      it 'should return last shot with number up' do
+        expect(computer.shot_option_3('B2')).to eq('B3')
+      end
+    end
+
+    context '#shot_option_4' do
+      it 'should return last shot with number down' do
+        expect(computer.shot_option_4('B2')).to eq('B1')
+      end
+    end
+  end
+
   describe '#ship_valid_coordinates' do
     context 'when direction is vertical' do
       it 'creates random valid vertical coordinates for each ship' do
