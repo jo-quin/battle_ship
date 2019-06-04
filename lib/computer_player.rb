@@ -7,13 +7,13 @@ class ComputerPlayer
     destroyer: { length: 2, vertical: 9, horizontal: 'I' }
   }
 
-  attr_reader :name, :shots, :shot
+  attr_reader :name, :shots
 
   def initialize(name = 'Computer')
     @name = name
     @shots = []
     @shot = ''
-    @last_hit = ''
+    @last_hit = { coordinate: '', option: 1 }
     
     ('A'..'J').each do |l|
       10.times do |n|
