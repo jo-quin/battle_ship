@@ -27,6 +27,9 @@ class ComputerPlayer
       if line.chop == 'hit'
         new_last_hit
         return nil
+      elsif line.chop.split(' ')[-1] == 'SANK!'
+        reset_last_hit
+        return nil
       elsif line.chop == 'Enter your name:'
         return @name
       elsif line.chop == 'Enter shot coordinate:'

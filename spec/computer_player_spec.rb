@@ -8,6 +8,7 @@ describe ComputerPlayer do
       it 'should call the name attribute when receiving "Enter your name:"' do
         expect(computer.input('Enter your name: ')).to eq(computer.name)
       end
+
       it 'should call ship_valid_coordinates when receiving "Carrier (5):"' do
         expect(computer).to receive(:ship_valid_coordinates).with('carrier')
         computer.input('Carrier (5):')
@@ -15,6 +16,16 @@ describe ComputerPlayer do
 
       it 'should remove one shot coordinate from shots when receiving "Enter shot coordinate:"' do
         expect{ computer.input('Enter shot coordinate: ') }.to change{ computer.shots.length }.by -1
+      end
+
+      it 'should call new_last_hit when a ship is hit' do
+        expect(computer).to receive(:new_last_hit)
+        computer.input('hit ')
+      end
+
+      it 'should call reset_last_hit when a ship is sank' do
+        expect(computer).to receive(:reset_last_hit)
+        computer.input('CARRIER SANK! ')
       end
     end
   end
