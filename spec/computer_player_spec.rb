@@ -19,8 +19,40 @@ describe ComputerPlayer do
     end
   end
 
-  describe '#shots' do
-    it 'declares shots'
+  describe '#choose_shot_option' do
+    it 'should return a shot coordinate calling the appropriate shot_option method' do
+      expect(computer).to receive(:shot_option_1)
+      computer.choose_shot_option
+    end
+  end
+
+  describe '#update_shot_option' do
+    context 'should update shot option' do
+      it 'should choose next option' do
+        expect(computer.update_shot_option).to eq(2)
+      end
+    end
+  end
+
+  describe '#retrieve_random_shot' do
+    it 'should return a random shot from @shots' do
+      shot = computer.retrieve_random_shot
+      expect(computer.shots).to_not include(shot)
+    end
+  end
+
+  describe '#new_last_hit' do
+    it 'should assign last successful shot to last hit coordinate and set last hit option to 1' do
+      computer.input('Enter shot coordinate: ')
+      computer.input('hit')
+      expect(computer.new_last_hit).to eq([computer.shot, 1])
+    end
+  end
+
+  describe '#reset_last_hit' do
+    it 'should set last hit coordinate to an empty string and option to 1' do
+      expect(computer.reset_last_hit).to eq(['', 1])
+    end
   end
 
   describe 'SHOT_OPTIONS' do
