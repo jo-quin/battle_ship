@@ -95,19 +95,19 @@ class ComputerPlayer
   end
 
   def shot_option_1(shot)
-    (shot[0].ord + 1).chr + shot[1]
+    (shot[0].ord + 1).chr + shot[1..-1]
   end
 
   def shot_option_2(shot)
-    (shot[0].ord - 1).chr + shot[1]
+    (shot[0].ord - 1).chr + shot[1..-1]
   end
 
   def shot_option_3(shot)
-    shot[0] + (shot[1].to_i + 1).to_s
+    shot[0] + (shot[1..-1].to_i + 1).to_s
   end
 
   def shot_option_4(shot)
-    shot[0] + (shot[1].to_i - 1).to_s
+    shot[0] + (shot[1..-1].to_i - 1).to_s
   end
 
   private
