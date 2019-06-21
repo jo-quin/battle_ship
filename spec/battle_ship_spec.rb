@@ -24,6 +24,8 @@ describe Battle_Ship do
     accept.join
   end
 
+  it 'asks for multiplayer or against the computer mode'
+
   it 'opens a TCPserver in port 2979 and says Welcome to BattleShip!!! to the client' do
     client = TCPSocket.new('localhost', 2979)
     client.puts 'Player 1'

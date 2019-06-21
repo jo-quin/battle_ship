@@ -2,8 +2,11 @@ require 'socket'
 require_relative 'game'
 require_relative 'grid'
 require_relative 'player'
+require 'date'
 
 class Battle_Ship
+
+  attr_reader :rounds
   
   def initialize(game = Game.new(grid = Grid.new))
     @port = 2979
@@ -11,6 +14,7 @@ class Battle_Ship
     @game = game
     @players = []
     puts "\n Battle_Ship server started at port #{@port} \n"
+    @rounds = 0
   end
 
   def accept_player
@@ -36,7 +40,7 @@ class Battle_Ship
       player.client.puts "#{player.name} your turn!"
       player.client.puts @game.play_screen(player, opponent)
       player.client.puts @game.fire_shot(player, opponent)
-      sleep(2)
+      # sleep(2)
       player.client.puts clear_screen
       player.client.puts @game.play_screen(player, opponent)
       if @game.end_game?(player, opponent) == true
@@ -44,6 +48,7 @@ class Battle_Ship
       end
       player.client.puts "#{opponent.name}'s turn."
     end
+    @rounds += 1
   end
 
   def close
@@ -73,5 +78,8 @@ if __FILE__ == $0
       break
     end
   }
+  open('/Users/student/scripts/battle_ship/spec/average_rounds.txt', 'a') do |f| 
+    f.puts "#{DateTime.now.strftime}: #{server.rounds} rounds."
+  end
   server.close
 end
