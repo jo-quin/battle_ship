@@ -25,6 +25,20 @@ class Battle_Ship
     @players << player
   end
 
+  def multiplayer_menu
+    @players[0].client.puts "Enter 'f' to play against a friend or 'c' to play against the computer:"
+    choice = @players[0].client.gets.chomp.downcase
+    thread1 = Thread.new {accept_player}
+    sleep 0.5
+    if choice == 'c'
+      @players[0].client.puts 'Loading computer...'
+      thread2 = Thread.new {system('ruby /mnt/c/Users/josem/Scripts/battle_ship/lib/computer_player.rb')}
+    else
+      @players[0].client.puts 'Waiting for your friend...'
+    end
+    thread1.join
+  end
+
   def position_ships # print waiting for player2 if player1
     @players.each do |player|
       opponent = @players.select { |p| p != player }[0]
@@ -71,15 +85,16 @@ end
 
 if __FILE__ == $0
   server = Battle_Ship.new
-  2.times do server.accept_player end
+  server.accept_player
+  server.multiplayer_menu
   server.position_ships
   loop {
     if server.round == :end_game
       break
     end
   }
-  open('/Users/student/scripts/battle_ship/spec/average_rounds.txt', 'a') do |f| 
-    f.puts "#{DateTime.now.strftime}: #{server.rounds} rounds."
-  end
+  # open('/Users/student/scripts/battle_ship/spec/average_rounds.txt', 'a') do |f| 
+  #   f.puts "#{DateTime.now.strftime}: #{server.rounds} rounds."
+  # end
   server.close
 end
