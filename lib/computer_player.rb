@@ -116,3 +116,23 @@ class ComputerPlayer
     ['vertical', 'horizontal'].sample
   end
 end
+
+if __FILE__ == $0
+  require 'socket'
+
+  client = TCPSocket.new('localhost', 2979)
+  computer = ComputerPlayer.new()
+
+  get = Thread.new {
+    while line = client.gets
+      c = computer.input(line)
+      puts line.chop
+      if c != nil
+        client.puts c
+        puts c
+      end
+    end
+  }
+
+  get.join
+end 
