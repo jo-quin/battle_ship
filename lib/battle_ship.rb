@@ -85,16 +85,26 @@ end
 
 if __FILE__ == $0
   server = Battle_Ship.new
-  server.accept_player
-  server.multiplayer_menu
-  server.position_ships
-  loop {
-    if server.round == :end_game
-      break
+  if ARGV[0] == 'test'
+    2.times do server.accept_player end
+    server.position_ships
+    loop {
+      if server.round == :end_game
+        break
+      end
+    }
+    open("#{Dir.pwd}/spec/average_rounds.txt", 'a') do |f| 
+      f.puts "#{DateTime.now.strftime}: #{server.rounds} rounds."
     end
-  }
-  # open('/Users/student/scripts/battle_ship/spec/average_rounds.txt', 'a') do |f| 
-  #   f.puts "#{DateTime.now.strftime}: #{server.rounds} rounds."
-  # end
+  else
+    server.accept_player
+    server.multiplayer_menu
+    server.position_ships
+    loop {
+      if server.round == :end_game
+        break
+      end
+    }
+  end
   server.close
 end
