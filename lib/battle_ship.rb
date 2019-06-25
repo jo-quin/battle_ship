@@ -32,7 +32,7 @@ class Battle_Ship
     sleep 0.5
     if choice == 'c'
       @players[0].client.puts 'Loading computer...'
-      thread2 = Thread.new {system('ruby /mnt/c/Users/josem/Scripts/battle_ship/lib/computer_player.rb')}
+      thread2 = Thread.new {system("ruby #{Dir.pwd}/lib/computer_player.rb")}
     else
       @players[0].client.puts 'Waiting for your friend...'
     end
