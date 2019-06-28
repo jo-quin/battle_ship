@@ -78,6 +78,7 @@ class Game
         end
       end
     end
+    return nil
   end
 
   def end_game?(player, opponent)
