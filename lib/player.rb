@@ -6,5 +6,6 @@ class Player
     @client = client
     @ships_coordinates = {}
     @shots_coordinates = { hit: [], miss: []}
+    @ships_sank = []
   end
 end
