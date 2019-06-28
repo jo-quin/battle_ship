@@ -72,6 +72,17 @@ class Game
     end
   end
 
+  def ship_sank(player, opponent)
+    opponent.ships_coordinates.each do |ship, coordinates|
+      if coordinates.difference(player.shots_coordinates[:hit]) == []
+        unless player.ships_sank.include? ship
+          player.ships_sank<<ship
+          return player.ships_sank.last
+        end
+      end
+    end
+  end
+
   def end_game?(player, opponent)
     opponent.ships_coordinates.all? do |k, v|
       v.difference(player.shots_coordinates[:hit]) == []

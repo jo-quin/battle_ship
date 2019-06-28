@@ -2,8 +2,8 @@ require 'game'
 
 describe Game do
   let(:grid) { double :grid }
-  let(:player1) { double(:player1, name: '', ships_coordinates: {}, shots_coordinates: { hit: [], miss: []}) }
-  let(:player2) { double(:player2, name: '', ships_coordinates: {}, shots_coordinates: { hit: [], miss: []}) }
+  let(:player1) { double(:player1, name: '', ships_coordinates: {}, shots_coordinates: { hit: [], miss: []}, ships_sank: [] )}
+  let(:player2) { double(:player2, name: '', ships_coordinates: {}, shots_coordinates: { hit: [], miss: []}, ships_sank: [] )}
   subject(:game) { Game.new(grid) }
 
   describe '#ships' do
@@ -102,6 +102,14 @@ Destroyer Length: 2
       allow(i).to receive(:puts)
       expect(game).to receive(:draw).with('miss')
       game.fire_shot(player1, player2)
+    end
+  end
+
+  describe '#ship_sank' do
+    it 'returns the last ship_sank' do
+      allow(player2).to receive(:ships_coordinates).and_return({ destroyer: ['B2', 'E2']})
+      allow(player1).to receive(:shots_coordinates).and_return({hit:['B2', 'E2']})
+      expect(game.ship_sank(player1, player2)).to eq :destroyer
     end
   end
 
