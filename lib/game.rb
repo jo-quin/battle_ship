@@ -54,7 +54,7 @@ class Game
       ship_sank = ship_sank(player, opponent)
       if ship_sank != nil
         # return draw(ship_sank.to_s) + draw('sank')
-        return draw('hit')
+        return draw('sank')
       end
       player.client.puts 'hit'
       player.client.puts "\e[H\e[2J"

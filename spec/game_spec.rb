@@ -90,7 +90,7 @@ Destroyer Length: 2
       allow(i).to receive(:gets).and_return('B2')
       allow(player2).to receive(:client).and_return(i = IO.new(1))
       allow(i).to receive(:puts)
-      expect(game).to receive(:draw).with('hit')
+      expect(game).to receive(:draw)
       game.fire_shot(player1, player2)
     end
 
