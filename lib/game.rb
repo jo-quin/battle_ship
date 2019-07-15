@@ -53,8 +53,7 @@ class Game
       player.shots_coordinates[:hit] << shot
       ship_sank = ship_sank(player, opponent)
       if ship_sank != nil
-        # return draw(ship_sank.to_s) + draw('sank')
-        return draw('sank')
+        return draw(ship_sank.to_s) + draw('sank')
       end
       player.client.puts 'hit'
       player.client.puts "\e[H\e[2J"
