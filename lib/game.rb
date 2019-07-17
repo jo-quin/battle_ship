@@ -51,13 +51,9 @@ class Game
     shot = player.client.gets.chomp
     if opponent.ships_coordinates.values.flatten.include?(shot)
       player.shots_coordinates[:hit] << shot
-      opponent.ships_coordinates.each do |k, v|
-        if v.difference(player.shots_coordinates[:hit]) == []
-          player.client.puts 'hit'
-          opponent.client.puts "#{player.name} hits!"
-          player.client.puts "#{k.upcase} SANK!"
-          return draw('hit')
-        end
+      ship_sank = ship_sank(player, opponent)
+      if ship_sank != nil
+        return draw(ship_sank.to_s) + draw('sank')
       end
       player.client.puts 'hit'
       player.client.puts "\e[H\e[2J"
@@ -70,6 +66,18 @@ class Game
       player.shots_coordinates[:miss] << shot
       return draw('miss')
     end
+  end
+
+  def ship_sank(player, opponent)
+    opponent.ships_coordinates.each do |ship, coordinates|
+      if coordinates.difference(player.shots_coordinates[:hit]) == []
+        unless player.ships_sank.include? ship
+          player.ships_sank<<ship
+          return player.ships_sank.last
+        end
+      end
+    end
+    return nil
   end
 
   def end_game?(player, opponent)

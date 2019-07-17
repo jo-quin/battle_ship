@@ -55,7 +55,7 @@ class Battle_Ship
       player.client.puts @game.play_screen(player, opponent)
       player.client.puts @game.fire_shot(player, opponent)
       unless ARGV[0] == 'test' then sleep(2) end
-      player.client.puts clear_screen
+      scroll_down(player)
       player.client.puts @game.play_screen(player, opponent)
       if @game.end_game?(player, opponent) == true
         return winner(player)
@@ -73,6 +73,10 @@ class Battle_Ship
 
   def clear_screen
     return "\e[H\e[2J"
+  end
+
+  def scroll_down(player)
+    5.times { player.client.puts "\n" }
   end
 
   def winner(player)
