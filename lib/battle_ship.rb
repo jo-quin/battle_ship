@@ -2,10 +2,11 @@ require 'socket'
 require_relative 'game'
 require_relative 'grid'
 require_relative 'player'
+require_relative 'termiro'
 require 'date'
 
 class Battle_Ship
-
+  include Termiro
   attr_reader :rounds
   
   def initialize(game = Game.new(grid = Grid.new))
@@ -19,6 +20,9 @@ class Battle_Ship
 
   def accept_player
     client = @server.accept
+    client.puts clear_screen
+    client.puts draw('main_title')
+    sleep 2
     client.puts 'Enter your name:'
     player = Player.new(client.gets.chomp , client)
     player.client.puts "Welcome to BattleShip #{player.name}!!!"
