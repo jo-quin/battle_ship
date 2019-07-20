@@ -24,15 +24,6 @@ describe Battle_Ship do
     accept.join
   end
 
-  it 'asks for multiplayer or against the computer mode'
-
-  it 'opens a TCPserver in port 2979 and says Welcome to BattleShip!!! to the client' do
-    client = TCPSocket.new('localhost', 2979)
-    client.puts 'Player 1'
-    expect(client.gets.chomp).to eq('Enter your name:')
-    expect(client.gets.chomp).to eq('Welcome to BattleShip Player 1!!!')
-  end
-
   it 'allow players to position their ships' do
     players_join_game
     expect(game).to receive(:position_ships).twice
