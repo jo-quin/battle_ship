@@ -57,12 +57,12 @@ class Game
       end
       player.client.puts 'hit'
       player.client.puts "\e[H\e[2J"
-      opponent.client.puts "#{player.name} hits!"
+      opponent.client.puts "#{player.name} hits #{shot}!"
       return draw('hit')
     else
       player.client.puts 'miss'
       player.client.puts "\e[H\e[2J"
-      opponent.client.puts "#{player.name} miss!"
+      opponent.client.puts "#{player.name} miss #{shot}!"
       player.shots_coordinates[:miss] << shot
       return draw('miss')
     end
