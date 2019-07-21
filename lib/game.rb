@@ -53,6 +53,7 @@ class Game
       player.shots_coordinates[:hit] << shot
       ship_sank = ship_sank(player, opponent)
       if ship_sank != nil
+        opponent.client.puts "#{player.name} sank your #{ship_sank}!"
         return draw(ship_sank.to_s) + draw('sank')
       end
       player.client.puts 'hit'
