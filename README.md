@@ -2,7 +2,9 @@
 
 # Battle_ship
 
-I want to build a Battle Ship game on the terminal.
+An online CLI BattleShip game.
+
+My main motivation to create this CLI replica of the BattleShip game was to learn how to connect different users on different networks to play against each other online. The app is hosted on a Raspberry Pi computer connected to the internet where users can connect to via Telnet.
 
 ## Getting started
 
