@@ -10,6 +10,8 @@ My main motivation to create this CLI replica of the BattleShip game was to lear
 
 ## Usage
 
+To play the game visit ```telnet jo-quin.tech 2979```
+
 ## Running tests
 
 ## Final thoughts
