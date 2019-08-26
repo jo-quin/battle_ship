@@ -6,14 +6,6 @@ An online CLI BattleShip game.
 
 My main motivation to create this CLI replica of the BattleShip game was to learn how to connect different users on different networks to play against each other online. The app is hosted on a Raspberry Pi computer connected to the internet where users can connect to via Telnet.
 
-## Getting started
-
 ## Usage
 
 To play the game visit ```telnet jo-quin.tech 2979```
-
-## Running tests
-
-## Final thoughts
-
-## Roadmap
