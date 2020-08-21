@@ -8,6 +8,6 @@ My main motivation to create this CLI replica of the BattleShip game was to lear
 
 ## Usage
 
-To play the game visit ```telnet jo-quin.tech 2979```
-
-To exit the game at any time press Ctrl+] and press enter. When the prompt appears type `close`. This will close the connection with the server.
+Git clone the repo and run `ruby lib/battle_ship.rb`. This will start the game server.
+In another tab enter `nc localhost 2979`. This will connect to the local server.
+Have fun! 🚢
